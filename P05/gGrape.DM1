@@ -31,7 +31,7 @@ VersionId,Version_ID,Copyright,Global_User_ID,Row_Time_Stamp
 
 Diagram
 DiagramId,Version_ID,VersionId,LastUpdate,CreateDate,ActiveModel,ActiveSubmodel,VSplitterPosition,X,Y,Width,Height,DiagramNameId,AuthorId,CompanyId,VersionNoId,CopyrightStringId,DefinitionId,UnificationOptionId,FileNameId,CopyrightYearStringId,DiagramName,CodePage,SignatureGUID,ReleaseName,Flags,Global_User_ID,Row_Time_Stamp
-1,1,800,10/17/2016 21:11:24G,10/11/2016 02:04:00G,1,1,180,0,0,0,0,99,52,53,54,53,0,55,99,0,gGrape.DM1,1252,NULL,"",0,1,0
+1,1,800,10/19/2016 20:34:12G,10/11/2016 02:04:00G,1,1,180,0,0,0,0,99,52,53,54,53,0,55,99,0,gGrape.DM1,1252,NULL,"",0,1,0
 
 Model
 DiagramId,ModelId,Model_ID,ModelType,PlatformId,NamePrefix,SpaceHandling,CaseHandling,GenPrimaryKey,GenAlternateKey,GenInversionEntry,GenForeignKey,Notation,ModelNameId,RowOverhead,TableOverhead,IndexOverhead,BlobOverhead,BlobBlockSize,Global_User_ID,Row_Time_Stamp
@@ -648,15 +648,16 @@ Lineage_Stream_Display_ID,Lineage_Stream_ID,Submodel_ID,DesiredRoutingStyle,Pare
 
 SmallString
 String_Id,Data,Overflow,ConstantString,Row_Time_Stamp
-123,COMPATIBLE_GPHONE,0,0,0
-124,COMPATIBLE_GPAD,0,0,0
+122,BIT,0,0,0
 1,Main,0,0,0
-125,COMPRATIBLE_GWATCH,0,0,0
+123,COMPATIBLE_GPHONE,0,0,0
 2,Diagram specific data dictionary.,0,0,0
+124,COMPATIBLE_GPAD,0,0,0
 3,Logical,0,0,0
-127,HISTORICO_STATUS_DISPOSITIVO,0,0,0
+125,COMPRATIBLE_GWATCH,0,0,0
 4,Main Model,0,0,0
 5,Data Movement Rules,0,0,0
+127,HISTORICO_STATUS_DISPOSITIVO,0,0,0
 7,Y,0,0,0
 8,TARJETA,0,0,0
 9,CH,0,0,0
@@ -745,7 +746,6 @@ String_Id,Data,Overflow,ConstantString,Row_Time_Stamp
 119,FORMA_ID,0,0,0
 120,DESCRIPCION,0,0,0
 121,PK14,0,0,0
-122,BIT,0,0,0
 
 LargeString
 String_Id,Data,Row_Time_Stamp
@@ -1254,7 +1254,7 @@ Identity_Value_ID,Table_Name,Column_Name,Next_Valid_Value,Global_User_ID,Row_Tim
 14,Bound_Dictionary_Object,Bound_Dictionary_Object_ID,1,0,0
 15,CheckConstraints,CheckConstraints_ID,1,0,0
 16,Circular_Layout,Circular_Layout_ID,13,0,0
-17,ColorDefault,ColorDefault_ID,641,0,0
+17,ColorDefault,ColorDefault_ID,642,0,0
 18,Column_Usage,Column_Usage_ID,1,0,0
 19,Components_Layout,Components_Layout_ID,13,0,0
 20,Configuration_Option,Configuration_Option_ID,1,0,0
