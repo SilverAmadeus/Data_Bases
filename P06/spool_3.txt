@@ -1,0 +1,153 @@
+SQL> create or replace view v_estudiante(
+  2  estudiante_id,nombre,semestre)
+  3  AS SELECT estudiante_id,nombre,semestre
+  4  FROM ESTUDIANTE E, REGULAR
+  5  );
+)
+*
+ERROR at line 5:
+ORA-00933: comando SQL no terminado correctamente 
+
+
+SQL> EDIT
+Wrote file afiedt.buf
+
+  1  create or replace view v_estudiante(
+  2  estudiante_id,nombre,semestre)
+  3  AS SELECT estudiante_id,nombre,semestre
+  4  FROM ESTUDIANTE E, REGULAR R
+  5* WHERE E.ESTUDIANTE_ID=R.REGULAR_ID
+SQL> RUN
+  1  create or replace view v_estudiante(
+  2  estudiante_id,nombre,semestre)
+  3  AS SELECT estudiante_id,nombre,semestre
+  4  FROM ESTUDIANTE E, REGULAR R
+  5* WHERE E.ESTUDIANTE_ID=R.REGULAR_ID
+
+View created.
+
+SQL> CREATE OR REPLACE SYNONYM EST FOR ALAN_ADMIN.ESTUDIANTE;
+
+Synonym created.
+
+SQL> CREATE OR REPLACE SYNONYM ASIG FOR ALAN_ADMIN.ASIGNATURA;
+
+Synonym created.
+
+SQL> CREATE OR REPLACE SYNONYM OA FOR ALAN_ADMIN.OYENTE_ASIGNATURA;
+
+Synonym created.
+
+SQL> CREATE OR REPLACE SYNONYM OYE FOR ALAN_ADMIN.OYENTE_OYENTE;
+
+Synonym created.
+
+SQL> CREATE OR REPLACE SYNONYM REG OYE ALAN_ADMIN.OYENTE;
+CREATE OR REPLACE SYNONYM REG OYE ALAN_ADMIN.OYENTE
+                              *
+ERROR at line 1:
+ORA-00905: falta una palabra clave 
+
+
+SQL> CREATE OR REPLACE SYNONYM REG OYEN ALAN_ADMIN.OYENTE;
+CREATE OR REPLACE SYNONYM REG OYEN ALAN_ADMIN.OYENTE
+                              *
+ERROR at line 1:
+ORA-00905: falta una palabra clave 
+
+
+SQL> CREATE OR REPLACE SYNONYM OYEN ALAN_ADMIN.OYENTE;
+CREATE OR REPLACE SYNONYM OYEN ALAN_ADMIN.OYENTE
+                               *
+ERROR at line 1:
+ORA-00905: falta una palabra clave 
+
+
+SQL> REPLACE SYNOSYM OYE FOR ALAN_ADMIN.OYENTE
+SP2-0734: unknown command beginning "REPLACE SY..." - rest of line ignored.
+SQL> CREATE OR REPLACE SYNOSYM OYE FOR ALAN_ADMIN.OYENTE
+  2  ;
+CREATE OR REPLACE SYNOSYM OYE FOR ALAN_ADMIN.OYENTE
+                  *
+ERROR at line 1:
+ORA-00922: falta la opcion o no es valida 
+
+
+SQL> CREATE OR REPLACE SYNONYM OYE FOR ALAN_ADMIN.OYENTE
+  2  ;
+
+Synonym created.
+
+SQL> CREATE OR REPLACE SYNONYM REG FOR ALAN_ADMIN.REGULAR;
+
+Synonym created.
+
+SQL> edit
+Wrote file afiedt.buf
+
+  1  select table_name, count(*) num_constraints
+  2  from user_constraints
+  3  where table_name
+  4  in('ESTUDIANTE','ASIGNATURA','REGULAR','OYENTE','OYENTE_ASIGNATURA')
+  5* group by table_name
+SQL> run
+  1  select table_name, count(*) num_constraints
+  2  from user_constraints
+  3  where table_name
+  4  in('ESTUDIANTE','ASIGNATURA','REGULAR','OYENTE','OYENTE_ASIGNATURA')
+  5* group by table_name
+
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+NUM_CONSTRAINTS                                                                 
+---------------                                                                 
+OYENTE_ASIGNATURA                                                               
+              6                                                                 
+                                                                                
+ESTUDIANTE                                                                      
+              6                                                                 
+                                                                                
+ASIGNATURA                                                                      
+              6                                                                 
+                                                                                
+
+TABLE_NAME                                                                      
+--------------------------------------------------------------------------------
+NUM_CONSTRAINTS                                                                 
+---------------                                                                 
+OYENTE                                                                          
+              4                                                                 
+                                                                                
+REGULAR                                                                         
+              4                                                                 
+                                                                                
+
+SQL> connect julian_invitado/invitado
+Connected.
+SQL> disconnect
+Disconnected from Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+SQL> grant select on ESTUDIANTE to julian_invitado;
+SP2-0640: Not connected
+SQL> connect / as sysdba
+Connected.
+SQL> grant select on ESTUDIANTE to JULIAN_INVITADO;
+grant select on ESTUDIANTE to JULIAN_INVITADO
+                *
+ERROR at line 1:
+ORA-00942: la tabla o vista no existe 
+
+
+SQL> connect alan_admin/ciscoplus
+Connected.
+SQL> grant select on ESTUDIANTE to JULIAN_INVITADO;
+
+Grant succeeded.
+
+SQL> connect julian_invitado/invitado
+Connected.
+SQL> select * from alan_admin.Estudiante;
+
+no rows selected
+
+SQL> spool off
