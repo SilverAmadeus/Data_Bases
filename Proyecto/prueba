@@ -1,3 +1,15 @@
+
+--Autor
+create table autor(
+    autor_id            NUMBER(40, 0)    NOT NULL,
+    ocupacion           VARCHAR2(40)     NOT NULL,
+    institucion         VARCHAR2(40)     NOT NULL,
+    nombre              VARCHAR2(40)     NOT NULL,
+    apellido_materno    VARCHAR2(40)     NOT NULL,
+    apellido_paterno    VARCHAR2(40)     NOT NULL,
+    CONSTRAINT autor_pk PRIMARY KEY (autor_id)
+);
+
 --Area de Interés 
 create table area_de_interes(
     area_de_interes_id  NUMBER(40, 0)    NOT NULL,
@@ -5,6 +17,79 @@ create table area_de_interes(
     nombre              VARCHAR2(40)     NOT NULL,
     clave               VARCHAR2(40)     NOT NULL,
     CONSTRAINT area_de_interes_pk PRIMARY KEY (area_de_interes_id)
+);
+
+--Status
+create table status(
+    status_id    NUMBER(40, 0)    NOT NULL,
+    nombre       VARCHAR2(40)     NOT NULL,
+    CONSTRAINT status_pk PRIMARY KEY (status_id)
+);
+
+--Suscriptor
+create table suscriptor(
+    suscriptor_id             NUMBER(40, 0)    NOT NULL,
+    nombre                    VARCHAR2(40)     NOT NULL,
+    apellido_paterno          VARCHAR2(40)     NOT NULL,
+    apellido_materno          VARCHAR2(40)     NOT NULL,
+    fecha_suscripcion         DATE             NOT NULL,
+    email                     VARCHAR2(40)     NOT NULL,
+    vigencia                  VARCHAR2(40)     NOT NULL,
+    calle                     VARCHAR2(40)     NOT NULL,
+    numero                    NUMBER(40, 0)    NOT NULL,
+    colonia                   VARCHAR2(40)     NOT NULL,
+    codigo_postal             NUMBER(40, 0)    NOT NULL,
+    delegacion_municipio      VARCHAR2(40)     NOT NULL,
+    estado                    VARCHAR2(40)     NOT NULL,
+    CONSTRAINT suscriptor_pk PRIMARY KEY (suscriptor_id)
+);
+
+--Publicación
+create table publicacion(
+    publicacion_id  NUMBER(40, 0)    NOT NULL,
+    bimestre        VARCHAR2(40)     NOT NULL,--Checar tipo de dato
+    fecha           DATE             NOT NULL,
+    titulo          VARCHAR2(40)     NOT NULL,
+    num_vendidos    NUMBER(40, 0)    NULL,
+    anio            NUMBER(40, 0)    NOT NULL,
+    num_generados   NUMBER(40, 0)    NOT NULL,
+    CONSTRAINT publicacion_pk PRIMARY KEY (publicacion_id)
+);
+
+
+--Empleado
+create table empleado(
+    empleado_id         NUMBER(40, 0)    NOT NULL,
+    es_revisor          NUMBER(1, 0)     NOT NULL,
+    es_editor           NUMBER(1, 0)     NOT NULL,
+    nombre              VARCHAR2(40)     NOT NULL,
+    apellido_paterno    VARCHAR2(40)     NOT NULL,
+    apellido_materno    VARCHAR2(40)     NOT NULL,
+    fecha_ingreso       DATE             NOT NULL,
+    CONSTRAINT empleado_pk PRIMARY KEY (empleado_id)
+);
+
+
+--Editor
+create table editor(
+    empleado_id    NUMBER(40, 0)    NOT NULL,
+    grado          VARCHAR2(40)     NOT NULL,
+    email          VARCHAR2(40)     NOT NULL,
+    cedula         NUMBER(40, 0)    NOT NULL,
+    CONSTRAINT editor_pk PRIMARY KEY (empleado_id),
+    CONSTRAINT editor_empleado_fk 
+    FOREIGN KEY (empleado_id) REFERENCES empleado(empleado_id)
+);
+
+--Revisor
+create table revisor(
+    empleado_id      NUMBER(40, 0)    NOT NULL,
+    num_contrato    NUMBER(40, 0)    NOT NULL,
+    email           VARCHAR2(40),
+    fin_contrato    DATE             NOT NULL,
+    CONSTRAINT revisor_pk PRIMARY KEY (empleado_id),
+    CONSTRAINT revisor_empleado_fk FOREIGN KEY (empleado_id) 
+    REFERENCES empleado(empleado_id)
 );
 
 --Area Revisor
@@ -39,17 +124,6 @@ create table articulo(
     FOREIGN KEY (status_id) REFERENCES status(status_id)
 );
 
---Autor
-create table autor(
-    autor_id            NUMBER(40, 0)    NOT NULL,
-    ocupacion           VARCHAR2(40)     NOT NULL,
-    institucion         VARCHAR2(40)     NOT NULL,
-    nombre              VARCHAR2(40)     NOT NULL,
-    apellido_materno    VARCHAR2(40)     NOT NULL,
-    apellido_paterno    VARCHAR2(40)     NOT NULL,
-    CONSTRAINT autor_pk PRIMARY KEY (autor_id)
-);
-
 --Autor Artículo
 create table autor_articulo(
     autor_articulo_id    NUMBER(40, 0)    NOT NULL,
@@ -62,28 +136,6 @@ create table autor_articulo(
     FOREIGN KEY (articulo_id) REFERENCES articulo(articulo_id)
 );
 
---Editor
-create table editor(
-    empleado_id    NUMBER(40, 0)    NOT NULL,
-    grado          VARCHAR2(40)     NOT NULL,
-    email          VARCHAR2(40)     NOT NULL,
-    cedula         NUMBER(40, 0)    NOT NULL,
-    CONSTRAINT editor_pk PRIMARY KEY (empleado_id),
-    CONSTRAINT editor_empleado_fk 
-    FOREIGN KEY (empleado_id) REFERENCES empleado(empleado_id)
-);
-
---Empleado
-create table empleado(
-    empleado_id         NUMBER(40, 0)    NOT NULL,
-    es_revisor          NUMBER(1, 0)     NOT NULL,
-    es_editor           NUMBER(1, 0)     NOT NULL,
-    nombre              VARCHAR2(40)     NOT NULL,
-    apellido_paterno    VARCHAR2(40)     NOT NULL,
-    apellido_materno    VARCHAR2(40)     NOT NULL,
-    fecha_ingreso       DATE             NOT NULL,
-    CONSTRAINT empleado_pk PRIMARY KEY (empleado_id)
-);
 
 --Historico
 create table historico(
@@ -96,31 +148,6 @@ create table historico(
     CONSTRAINT historico_articulo_fk FOREIGN KEY (articulo_id)
     REFERENCES articulo(articulo_id)
 );
-
---Pdf
-create table pdf(
-    pdf_id        NUMBER(40, 0)    NOT NULL,
-    archivo       BLOB             NOT NULL,
-    descripcion   VARCHAR2(140)    NOT NULL,
-    clave         VARCHAR2(40)     NOT NULL,
-    articulo_id   NUMBER(40, 0)    NOT NULL,
-    CONSTRAINT pdf_pk PRIMARY KEY (pdf_id),
-    CONSTRAINT pdf_articulo_fk FOREIGN KEY (articulo_id) 
-    REFERENCES articulo(articulo_id)
-);
-
---Publicación
-create table publicacion(
-    publicacion_id  NUMBER(40, 0)    NOT NULL,
-    bimestre        VARCHAR2(40)     NOT NULL,--Checar tipo de dato
-    fecha           DATE             NOT NULL,
-    titulo          VARCHAR2(40)     NOT NULL,
-    num_vendidos    NUMBER(40, 0)    NULL,
-    anio            NUMBER(40, 0)    NOT NULL,
-    num_generados   NUMBER(40, 0)    NOT NULL,
-    CONSTRAINT publicacion_pk PRIMARY KEY (publicacion_id)
-);
-
 
 --Publicación-Artículo
 create table publicacion_articulo(
@@ -162,40 +189,29 @@ create table revisado_articulo(
     REFERENCES articulo(articulo_id)    
 );
 
-
---Revisor
-create table revisor(
-    empleado_id      NUMBER(40, 0)    NOT NULL,
-    num_contrato    NUMBER(40, 0)    NOT NULL,
-    email           VARCHAR2(40),
-    fin_contrato    DATE             NOT NULL,
-    CONSTRAINT revisor_pk PRIMARY KEY (empleado_id),
-    CONSTRAINT revisor_empleado_fk 
-    FOREIGN KEY (empleado_id) 
-    REFERENCES empleado(empleado_id)
+--Historico
+create table historico(
+    historico_id   NUMBER(40, 0)    NOT NULL,
+    status_id      NUMBER(40, 0)    NOT NULL,
+    articulo_id    NUMBER(40, 0)    NOT NULL,
+    CONSTRAINT historico_pk PRIMARY KEY (historico_id),
+    CONSTRAINT historico_status_fk FOREIGN KEY (status_id)
+    REFERENCES status(status_id),
+    CONSTRAINT historico_articulo_fk FOREIGN KEY (articulo_id)
+    REFERENCES articulo(articulo_id)
 );
 
---Status
-create table status(
-    status_id    NUMBER(40, 0)    NOT NULL,
-    nombre       VARCHAR2(40)     NOT NULL,
-    CONSTRAINT status_pk PRIMARY KEY (status_id)
+--Pdf
+create table pdf(
+    pdf_id        NUMBER(40, 0)    NOT NULL,
+    archivo       BLOB             NOT NULL,
+    descripcion   VARCHAR2(140)    NOT NULL,
+    clave         VARCHAR2(40)     NOT NULL,
+    articulo_id   NUMBER(40, 0)    NOT NULL,
+    CONSTRAINT pdf_pk PRIMARY KEY (pdf_id),
+    CONSTRAINT pdf_articulo_fk FOREIGN KEY (articulo_id) 
+    REFERENCES articulo(articulo_id)
 );
 
---Suscriptor
-create table suscriptor(
-    suscriptor_id             NUMBER(40, 0)    NOT NULL,
-    nombre                    VARCHAR2(40)     NOT NULL,
-    apellido_paterno          VARCHAR2(40)     NOT NULL,
-    apellido_materno          VARCHAR2(40)     NOT NULL,
-    fecha_suscripcion         DATE             NOT NULL,
-    email                     VARCHAR2(40)     NOT NULL,
-    vigencia                  VARCHAR2(40)     NOT NULL,
-    calle                     VARCHAR2(40)     NOT NULL,
-    numero                    NUMBER(40, 0)    NOT NULL,
-    colonia                   VARCHAR2(40)     NOT NULL,
-    codigo_postal             NUMBER(40, 0)    NOT NULL,
-    delegacion_municipio      VARCHAR2(40)     NOT NULL,
-    estado                    VARCHAR2(40)     NOT NULL,
-    CONSTRAINT suscriptor_pk PRIMARY KEY (suscriptor_id)
-);
+
+
