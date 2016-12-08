@@ -30,14 +30,14 @@ create table AREA_REVISOR(
 --
 
 create table ARTICULO(
-    ARTICULO_ID       NUMBER(40, 0)    NOT NULL,
+    articulo_id       NUMBER(40, 0)    NOT NULL,
     FOLIO             VARCHAR2(18)     NOT NULL,
     TITULO            VARCHAR2(40)     NOT NULL,
     SINOPSIS          VARCHAR2(40)     NOT NULL,
     "AREA DE INT_ID"  NUMBER(40, 0)    NOT NULL,
     EDITOR_ID         NUMBER(40, 0),
     STATUS_ID         NUMBER(40, 0)    NOT NULL,
-    CONSTRAINT PK2 PRIMARY KEY (ARTICULO_ID)
+    CONSTRAINT PK2 PRIMARY KEY (articulo_id)
 )
 ;
 
@@ -48,13 +48,13 @@ create table ARTICULO(
 --
 
 create table AUTOR(
-    AUTOR_ID            NUMBER(40, 0)    NOT NULL,
+    articulo_id            NUMBER(40, 0)    NOT NULL,
     OCUPACION           VARCHAR2(40)     NOT NULL,
     INSTITUCION         VARCHAR2(40)     NOT NULL,
     NOMBRE              VARCHAR2(40)     NOT NULL,
     APELLIDO_PATERNO    VARCHAR2(40)     NOT NULL,
     APELLIDO_MATERNO    VARCHAR2(40)     NOT NULL,
-    CONSTRAINT PK1 PRIMARY KEY (AUTOR_ID)
+    CONSTRAINT PK1 PRIMARY KEY (articulo_id)
 )
 ;
 
@@ -65,10 +65,10 @@ create table AUTOR(
 --
 
 create table AUTOR_ARTICULO(
-    AUTOR_ARTICULO_ID    NUMBER(40, 0)    NOT NULL,
-    AUTOR_ID             NUMBER(40, 0)    NOT NULL,
-    ARTICULO_ID          NUMBER(40, 0)    NOT NULL,
-    CONSTRAINT PK4 PRIMARY KEY (AUTOR_ARTICULO_ID)
+    AUTOR_articulo_id    NUMBER(40, 0)    NOT NULL,
+    articulo_id             NUMBER(40, 0)    NOT NULL,
+    articulo_id          NUMBER(40, 0)    NOT NULL,
+    CONSTRAINT PK4 PRIMARY KEY (AUTOR_articulo_id)
 )
 ;
 
@@ -102,69 +102,47 @@ create table EMPLEADO(
     APELLIDO_MAT     VARCHAR2(40)     NOT NULL,
     FECHA_INGRESO    DATE             NOT NULL,
     CONSTRAINT PK10 PRIMARY KEY (EMPLEADO_ID)
-)
-;
+);
 
 
+--Historico
+create table historico(
+    historico_id   NUMBER(40, 0)    NOT NULL,
+    status_id      NUMBER(40, 0)    NOT NULL,
+    articulo_id    NUMBER(40, 0)    NOT NULL,
+    CONSTRAINT historico_pk PRIMARY KEY (historico_id)
+);
 
--- 
--- TABLE: HISTORICO 
---
+--Pdf
+create table pdf(
+    pdf_id        NUMBER(40, 0)    NOT NULL,
+    archivo       BLOB             NOT NULL,
+    descripcion   VARCHAR2(140)    NOT NULL,
+    clave         VARCHAR2(40)     NOT NULL,
+    articulo_id   NUMBER(40, 0)    NOT NULL,
+    CONSTRAINT pdf_pk PRIMARY KEY (pdf_id)
+);
 
-create table HISTORICO(
-    HISTORICO      NUMBER(40, 0)    NOT NULL,
-    STATUS_ID      NUMBER(40, 0)    NOT NULL,
-    ARTICULO_ID    NUMBER(40, 0)    NOT NULL,
-    CONSTRAINT PK21 PRIMARY KEY (HISTORICO)
-)
-;
-
-
-
--- 
--- TABLE: PDF 
---
-
-create table PDF(
-    PDF_ID         NUMBER(40, 0)    NOT NULL,
-    ARCHIVO        BLOB             NOT NULL,
-    DESCRIPCION    VARCHAR2(140)    NOT NULL,
-    CLAVE          VARCHAR2(40)     NOT NULL,
-    ARTICULO_ID    NUMBER(40, 0)    NOT NULL,
-    CONSTRAINT PK6 PRIMARY KEY (PDF_ID)
-)
-;
-
-
-
--- 
--- TABLE: PUBLICACION 
---
-
-create table PUBLICACION(
-    PUBLICACION_ID    NUMBER(40, 0)    NOT NULL,
-    BIMESTRE          VARCHAR2(40)     NOT NULL,
-    FECHA             DATE             NOT NULL,
-    TITULO            VARCHAR2(40)     NOT NULL,
-    #VENDIDOS         NUMBER(40, 0)    NOT NULL,
-    AÑO               NUMBER(40, 0)    NOT NULL,
-    #GENERADOR        NUMBER(40, 0)    NOT NULL,
-    CONSTRAINT PK7 PRIMARY KEY (PUBLICACION_ID)
-)
-;
+--Publicación
+create table publicacion(
+    publicacion_id  NUMBER(40, 0)    NOT NULL,
+    bimestre        VARCHAR2(40)     NOT NULL,
+    fecha           DATE             NOT NULL,
+    titulo          VARCHAR2(40)     NOT NULL,
+    num_vendidos    NUMBER(40, 0)    NOT NULL,
+    anio            NUMBER(40, 0)    NOT NULL,
+    num_generados   NUMBER(40, 0)    NOT NULL,
+    CONSTRAINT publicacion_pk PRIMARY KEY (publicacion_id)
+);
 
 
-
--- 
--- TABLE: PUBLICACION_ARTICULO 
---
-
-create table PUBLICACION_ARTICULO(
-    PUBLIC_ART_ID     NUMBER(40, 0)    NOT NULL,
-    ARTICULO_ID       NUMBER(40, 0)    NOT NULL,
-    PUBLICACION_ID    NUMBER(40, 0)    NOT NULL,
-    NUM_PAGINA        NUMBER(40, 0)    NOT NULL,
-    CONSTRAINT PK8 PRIMARY KEY (PUBLIC_ART_ID)
+--Publicación-Artículo
+create table publicacion_articulo(
+    publicacion_articulo_id     NUMBER(40, 0)    NOT NULL,
+    articulo_id       NUMBER(40, 0)    NOT NULL,
+    publicacion_id    NUMBER(40, 0)    NOT NULL,
+    num_paginas        NUMBER(40, 0)    NOT NULL,
+    CONSTRAINT PK8 PRIMARY KEY (publicacion_articulo_id)
 )
 ;
 
@@ -174,12 +152,12 @@ create table PUBLICACION_ARTICULO(
 -- TABLE: PUBLICACION_SUSCRIPTOR 
 --
 
-create table PUBLICACION_SUSCRIPTOR(
-    PUBLICACION_SUSCRIPTOR_ID    CHAR(40)         NOT NULL,
+create table publicacion_suscriptor(
+    publicacion_suscriptor_id    CHAR(40)         NOT NULL,
     SUSCRIPTOR_ID                NUMBER(40, 0)    NOT NULL,
-    PUBLICACION_ID               NUMBER(40, 0)    NOT NULL,
+    publicacion_id               NUMBER(40, 0)    NOT NULL,
     FECHA_ENVIO                  DATE             NOT NULL,
-    CONSTRAINT PK18 PRIMARY KEY (PUBLICACION_SUSCRIPTOR_ID)
+    CONSTRAINT PK18 PRIMARY KEY (publicacion_suscriptor_id)
 )
 ;
 
@@ -190,12 +168,12 @@ create table PUBLICACION_SUSCRIPTOR(
 --
 
 create table REVISADO_ARTICULO(
-    REVISADO_ARTICULO_ID    NUMBER(40, 0)    NOT NULL,
+    REVISADO_articulo_id    NUMBER(40, 0)    NOT NULL,
     NOTIFICACION            BLOB,
     CALIFICACION            NUMBER(40, 0),
     REVISOR_ID              NUMBER(40, 0),
-    ARTICULO_ID             NUMBER(40, 0)    NOT NULL,
-    CONSTRAINT PK15 PRIMARY KEY (REVISADO_ARTICULO_ID)
+    articulo_id             NUMBER(40, 0)    NOT NULL,
+    CONSTRAINT PK15 PRIMARY KEY (REVISADO_articulo_id)
 )
 ;
 
@@ -293,13 +271,13 @@ ALTER TABLE ARTICULO ADD CONSTRAINT RefSTATUS28
 --
 
 ALTER TABLE AUTOR_ARTICULO ADD CONSTRAINT RefAUTOR4 
-    FOREIGN KEY (AUTOR_ID)
-    REFERENCES AUTOR(AUTOR_ID)
+    FOREIGN KEY (articulo_id)
+    REFERENCES AUTOR(articulo_id)
 ;
 
 ALTER TABLE AUTOR_ARTICULO ADD CONSTRAINT RefARTICULO5 
-    FOREIGN KEY (ARTICULO_ID)
-    REFERENCES ARTICULO(ARTICULO_ID)
+    FOREIGN KEY (articulo_id)
+    REFERENCES ARTICULO(articulo_id)
 ;
 
 
@@ -323,8 +301,8 @@ ALTER TABLE HISTORICO ADD CONSTRAINT RefSTATUS26
 ;
 
 ALTER TABLE HISTORICO ADD CONSTRAINT RefARTICULO29 
-    FOREIGN KEY (ARTICULO_ID)
-    REFERENCES ARTICULO(ARTICULO_ID)
+    FOREIGN KEY (articulo_id)
+    REFERENCES ARTICULO(articulo_id)
 ;
 
 
@@ -333,23 +311,23 @@ ALTER TABLE HISTORICO ADD CONSTRAINT RefARTICULO29
 --
 
 ALTER TABLE PDF ADD CONSTRAINT RefARTICULO30 
-    FOREIGN KEY (ARTICULO_ID)
-    REFERENCES ARTICULO(ARTICULO_ID)
+    FOREIGN KEY (articulo_id)
+    REFERENCES ARTICULO(articulo_id)
 ;
 
 
 -- 
--- TABLE: PUBLICACION_ARTICULO 
+-- TABLE: publicacion_articulo 
 --
 
-ALTER TABLE PUBLICACION_ARTICULO ADD CONSTRAINT RefARTICULO8 
-    FOREIGN KEY (ARTICULO_ID)
-    REFERENCES ARTICULO(ARTICULO_ID)
+ALTER TABLE publicacion_articulo ADD CONSTRAINT RefARTICULO8 
+    FOREIGN KEY (articulo_id)
+    REFERENCES ARTICULO(articulo_id)
 ;
 
-ALTER TABLE PUBLICACION_ARTICULO ADD CONSTRAINT RefPUBLICACION9 
-    FOREIGN KEY (PUBLICACION_ID)
-    REFERENCES PUBLICACION(PUBLICACION_ID)
+ALTER TABLE publicacion_articulo ADD CONSTRAINT RefPUBLICACION9 
+    FOREIGN KEY (publicacion_id)
+    REFERENCES PUBLICACION(publicacion_id)
 ;
 
 
@@ -363,8 +341,8 @@ ALTER TABLE PUBLICACION_SUSCRIPTOR ADD CONSTRAINT RefSUSCRIPTOR23
 ;
 
 ALTER TABLE PUBLICACION_SUSCRIPTOR ADD CONSTRAINT RefPUBLICACION24 
-    FOREIGN KEY (PUBLICACION_ID)
-    REFERENCES PUBLICACION(PUBLICACION_ID)
+    FOREIGN KEY (publicacion_id)
+    REFERENCES PUBLICACION(publicacion_id)
 ;
 
 
@@ -378,8 +356,8 @@ ALTER TABLE REVISADO_ARTICULO ADD CONSTRAINT RefREVISOR17
 ;
 
 ALTER TABLE REVISADO_ARTICULO ADD CONSTRAINT RefARTICULO18 
-    FOREIGN KEY (ARTICULO_ID)
-    REFERENCES ARTICULO(ARTICULO_ID)
+    FOREIGN KEY (articulo_id)
+    REFERENCES ARTICULO(articulo_id)
 ;
 
 
