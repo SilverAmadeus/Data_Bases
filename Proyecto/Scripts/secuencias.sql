@@ -1,0 +1,97 @@
+-- 14 secuencias para las tablas que requieren de ID
+--Tablas intermedias 10
+-- Status no requiere secuencia que tiene un numero fijo de registros
+
+-- Checar si realmente requiere seq
+CREATE SEQUENCE area_de_interes_seq
+ START WITH     100
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE
+ ORDER;
+
+CREATE SEQUENCE area_revisor_seq
+ START WITH     10
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE
+ ORDER;
+
+
+CREATE SEQUENCE articulo_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE
+ ORDER;
+
+CREATE SEQUENCE autor_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE
+ ORDER;
+
+CREATE SEQUENCE autor_articulo_seq
+ START WITH     10
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE
+ ORDER;
+
+CREATE SEQUENCE empleado_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE
+ ORDER;
+
+CREATE SEQUENCE historico_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE
+ ORDER;
+
+ CREATE SEQUENCE pdf_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE
+ ORDER;
+
+ CREATE SEQUENCE publicacion_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE
+ ORDER;
+
+ CREATE SEQUENCE publicacion_articulo_seq
+ START WITH     10
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE
+ ORDER;
+
+  CREATE SEQUENCE publicacion_suscriptor_seq
+ START WITH     10
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE
+ ORDER;
+
+ CREATE SEQUENCE revisado_articulo_seq
+ START WITH     10
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE
+ ORDER;
+
+
+  CREATE SEQUENCE suscriptor_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE
+ ORDER;
