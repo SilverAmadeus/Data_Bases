@@ -4,9 +4,10 @@
 -- Checar si la PK de PDF puede ser el ID del articulo al que pertenece
 --CHECK puede ir en STATUS
 
+connect moro_proy_admin/moro
 
 --1)Autor
-create table autor(
+CREATE TABLE autor(
     autor_id            NUMBER(30)       NOT NULL,
     ocupacion           VARCHAR2(40)     NOT NULL,
     institucion         VARCHAR2(40)     NOT NULL,
@@ -15,9 +16,10 @@ create table autor(
     apellido_paterno    VARCHAR2(40)     NOT NULL,
     CONSTRAINT autor_pk PRIMARY KEY (autor_id)
 );
+Prompt autor
 
 --2) Empleado
-create table empleado(
+CREATE TABLE empleado(
     empleado_id         NUMBER(30)       NOT NULL,
     es_revisor          NUMBER(1, 0)     NOT NULL,
     es_editor           NUMBER(1, 0)     NOT NULL,
@@ -27,29 +29,34 @@ create table empleado(
     fecha_ingreso       DATE             NOT NULL,
     CONSTRAINT empleado_pk PRIMARY KEY (empleado_id)
 );
+Prompt empleado
 
 --3 )Publicación
-create table publicacion(
+CREATE TABLE publicacion(
     publicacion_id  NUMBER(30)    NOT NULL,
-    bimestre        VARCHAR2(40)  NOT NULL,--Checar tipo de dato
+    bimestre        NUMBER(1)  NOT NULL,
     fecha           DATE          NOT NULL,
     titulo          VARCHAR2(40)  NOT NULL,
     num_vendidos    NUMBER(30)    NULL,
     anio            NUMBER(30)    NOT NULL,
     num_generados   NUMBER(30)    NOT NULL,
-    CONSTRAINT publicacion_pk PRIMARY KEY (publicacion_id)
+    CONSTRAINT publicacion_pk PRIMARY KEY (publicacion_id), 
+    CONSTRAINT publicacion_bimestre_chk CHECK (bimestre between 1 and 6)
 );
 
+Prompt publicacion
 
 --4) Status
-create table status(
+CREATE TABLE status(
     status_id    NUMBER(30)    NOT NULL,
-    nombre       VARCHAR2(40)     NOT NULL,
-    CONSTRAINT status_pk PRIMARY KEY (status_id)
+    clave        VARCHAR(4)    NOT NULL,
+    nombre       VARCHAR2(15)  NOT NULL,
+    CONSTRAINT status_pk PRIMARY KEY (status_id),
+    CONSTRAINT status_clave_uk UNIQUE (clave)
 );
-
+Prompt status
 --5) Suscriptor
-create table suscriptor(
+CREATE TABLE suscriptor(
     suscriptor_id             NUMBER(30)       NOT NULL,
     nombre                    VARCHAR2(40)     NOT NULL,
     apellido_paterno          VARCHAR2(40)     NOT NULL,
@@ -65,19 +72,20 @@ create table suscriptor(
     estado                    VARCHAR2(40)     NOT NULL,
     CONSTRAINT suscriptor_pk PRIMARY KEY (suscriptor_id)
 );
-
+Prompt suscriptor
 --6) Area de Interés 
-create table area_de_interes(
+CREATE TABLE area_de_interes(
     area_de_interes_id  NUMBER(30)    NOT NULL,
     descripcion         VARCHAR2(40)  NOT NULL,
+    clave               VARCHAR2(10)  NOT NULL,
     nombre              VARCHAR2(40)  NOT NULL,
-    clave               VARCHAR2(40)  NOT NULL,
     CONSTRAINT area_de_interes_pk PRIMARY KEY (area_de_interes_id),
     CONSTRAINT area_de_interes_clave_uk UNIQUE (clave)
 );
+Prompt area_de_interes
 
 --7) Editor
-create table editor(
+CREATE TABLE editor(
     empleado_id    NUMBER(30)       NOT NULL,
     grado          VARCHAR2(40)     NOT NULL,
     email          VARCHAR2(40)     NOT NULL,
@@ -87,9 +95,10 @@ create table editor(
     FOREIGN KEY (empleado_id) REFERENCES empleado(empleado_id),
     CONSTRAINT editor_cedula_uk UNIQUE (cedula)
 );
+Prompt editor
 
 --8) Revisor
-create table revisor(
+CREATE TABLE revisor(
     empleado_id     NUMBER(30)    NOT NULL,
     num_contrato    NUMBER(30)    NOT NULL,
     email           VARCHAR2(40),
@@ -104,7 +113,7 @@ create table revisor(
 -- DEPENDENT STUFF
 
 --9) Area Revisor
-create table area_revisor(
+CREATE TABLE area_revisor(
     area_revisor_id     NUMBER(30)    NOT NULL,
     anios_experiencia   NUMBER(4)     NOT NULL,
     revisor_id          NUMBER(30)    NOT NULL,
@@ -115,15 +124,16 @@ create table area_revisor(
     CONSTRAINT area_rev_area_de_int_fk 
     FOREIGN KEY (area_de_interes_id) REFERENCES area_de_interes(area_de_interes_id)
 );
+Prompt area_revisor
 
 --10) Artículo
-create table articulo(
+CREATE TABLE articulo(
     articulo_id         NUMBER(30)    NOT NULL,
     folio               VARCHAR2(18)  NOT NULL,
     titulo              VARCHAR2(40)  NOT NULL,
     sinopsis            VARCHAR2(40)  NOT NULL,
     area_de_interes_id  NUMBER(30)    NOT NULL,
-    status_id           NUMBER(30)    NOT NULL,
+    status_id           NUMBER(30)    DEFAULT 1, --Siempre que se registra se asigna el status RECIBIDO
     editor_id           NUMBER(30), 
     CONSTRAINT articulo_pk PRIMARY KEY (articulo_id),
     CONSTRAINT articulo_area_interes_fk 
@@ -131,12 +141,13 @@ create table articulo(
     CONSTRAINT articulo_editor_fk 
     FOREIGN KEY (editor_id) REFERENCES editor(empleado_id),
     CONSTRAINT articulo_status_fk 
-    FOREIGN KEY (status_id) REFERENCES status(status_id)
+    FOREIGN KEY (status_id) REFERENCES status(status_id),
+    CONSTRAINT articulo_folio_uk UNIQUE (folio)
 );
-
+Prompt articulo
 
 --11) Autor Artículo
-create table autor_articulo(
+CREATE TABLE autor_articulo(
     autor_articulo_id    NUMBER(30)    NOT NULL,
     autor_id             NUMBER(30)    NOT NULL,
     articulo_id          NUMBER(30)    NOT NULL,
@@ -146,10 +157,10 @@ create table autor_articulo(
     CONSTRAINT autor_articulo_articulo_fk 
     FOREIGN KEY (articulo_id) REFERENCES articulo(articulo_id)
 );
-
+Prompt autor_articulo
 
 --12) Historico
-create table historico(
+CREATE TABLE historico(
     historico_id   NUMBER(30)    NOT NULL,
     status_id      NUMBER(30)    NOT NULL,
     articulo_id    NUMBER(30)    NOT NULL,
@@ -159,36 +170,40 @@ create table historico(
     CONSTRAINT historico_articulo_fk FOREIGN KEY (articulo_id)
     REFERENCES articulo(articulo_id)
 );
+Prompt historico
 
 --13) Pdf
-create table pdf(
-    pdf_id        NUMBER(30)       NOT NULL,
-    archivo       BLOB             NOT NULL, --checar el tipo de dato
-    descripcion   VARCHAR2(140)    NOT NULL,
-    clave         VARCHAR2(40)     NOT NULL,
+CREATE TABLE pdf(
     articulo_id   NUMBER(30)       NOT NULL,
-    CONSTRAINT pdf_pk PRIMARY KEY (pdf_id),
+    pdf_id        NUMBER(30)       NOT NULL,
+    archivo       BLOB             NOT NULL, 
+    descripcion   VARCHAR2(140)    NOT NULL,
+    clave         VARCHAR2(2)     NOT NULL,--A1,..A5
+    CONSTRAINT pdf_pk PRIMARY KEY (articulo_id,pdf_id),
     CONSTRAINT pdf_articulo_fk FOREIGN KEY (articulo_id) 
     REFERENCES articulo(articulo_id),
-    CONSTRAINT pdf_clave_uk UNIQUE (clave)
+    CONSTRAINT pdf_clave_chk CHECK (clave IN ('A1','A2','A3','A4','A5'))
 );
-
+Prompt PDF
 
 --14) Publicación-Artículo
-create table publicacion_articulo(
+CREATE TABLE publicacion_articulo(
     publicacion_articulo_id     NUMBER(30)    NOT NULL,
     articulo_id                 NUMBER(30)    NOT NULL,
     publicacion_id              NUMBER(30)    NOT NULL,
-    num_paginas                 NUMBER(30)    NOT NULL,
+    num_pagina                  NUMBER(30)    NOT NULL,
     CONSTRAINT publicacion_articulo_pk PRIMARY KEY (publicacion_articulo_id),
     CONSTRAINT pub_articulo_articulo_fk FOREIGN KEY (articulo_id) 
     REFERENCES articulo(articulo_id),
     CONSTRAINT pub_articulo_publicacion_fk FOREIGN KEY (publicacion_id) 
     REFERENCES publicacion(publicacion_id)
 );
+Prompt publicacion_articulo
+
+--CONSTRAINT publicacion_num_paginas_chk CHECK (num_pagina>0)
 
 --15) Publicacion-Suscriptor
-create table publicacion_suscriptor(
+CREATE TABLE publicacion_suscriptor(
     publicacion_suscriptor_id    CHAR(40)      NOT NULL,
     suscriptor_id                NUMBER(30)    NOT NULL,
     publicacion_id               NUMBER(30)    NOT NULL,
@@ -199,11 +214,12 @@ create table publicacion_suscriptor(
     CONSTRAINT pub_suscriptor_publicacion_fk FOREIGN KEY (publicacion_id) 
     REFERENCES publicacion(publicacion_id)
 );
+Prompt publicacio_suscriptor
 
 --16) Revisado-Articulo
-create table revisado_articulo(
+CREATE TABLE revisado_articulo(
     revisado_articulo_id    NUMBER(30)    NOT NULL,
-    notificacion            BLOB , --Checar el tipo de dato.
+    notificacion            BLOB ,
     calificacion            NUMBER(30),
     revisor_id              NUMBER(30),
     articulo_id             NUMBER(30)    NOT NULL,
@@ -213,3 +229,4 @@ create table revisado_articulo(
     CONSTRAINT rev_articulo_articulo_id_fk FOREIGN KEY (articulo_id) 
     REFERENCES articulo(articulo_id)    
 );
+Prompt revisado_articulo

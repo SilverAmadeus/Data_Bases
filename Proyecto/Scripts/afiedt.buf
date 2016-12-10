@@ -1,0 +1,12 @@
+CREATE TABLE articulo(
+    articulo_id         NUMBER(30)    NOT NULL,
+    folio               VARCHAR2(18)  NOT NULL,
+    titulo              VARCHAR2(40)  NOT NULL,
+    sinopsis            VARCHAR2(40)  NOT NULL,
+    area_de_interes_id  NUMBER(30)    NOT NULL,
+    status_id           NUMBER(30)        DEFAULT 1, --Siempre que se registra se asigna el status RECIBIDO
+    editor_id           NUMBER(30), 
+    CONSTRAINT articulo_pk PRIMARY KEY (articulo_id),
+    CONSTRAINT articulo_folio_uk UNIQUE (folio)
+)
+/
