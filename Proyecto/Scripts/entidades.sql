@@ -4,42 +4,42 @@
 -- Checar si la PK de PDF puede ser el ID del articulo al que pertenece
 --CHECK puede ir en STATUS
 
-connect moro_proy_admin/moro
+--connect moro_proy_admin/moro
 
 --1)Autor
 CREATE TABLE autor(
-    autor_id            NUMBER(30)       NOT NULL,
-    ocupacion           VARCHAR2(40)     NOT NULL,
-    institucion         VARCHAR2(40)     NOT NULL,
-    nombre              VARCHAR2(40)     NOT NULL,
-    apellido_materno    VARCHAR2(40)     NOT NULL,
-    apellido_paterno    VARCHAR2(40)     NOT NULL,
+    autor_id            NUMBER       DEFAULT autor_seq.NEXTVAL,
+    ocupacion           VARCHAR2(40) NOT NULL,
+    institucion         VARCHAR2(40) NOT NULL,
+    nombre              VARCHAR2(40) NOT NULL,
+    apellido_materno    VARCHAR2(40) NOT NULL,
+    apellido_paterno    VARCHAR2(40) NOT NULL,
     CONSTRAINT autor_pk PRIMARY KEY (autor_id)
 );
 Prompt autor
 
 --2) Empleado
 CREATE TABLE empleado(
-    empleado_id         NUMBER(30)       NOT NULL,
-    es_revisor          NUMBER(1, 0)     NOT NULL,
-    es_editor           NUMBER(1, 0)     NOT NULL,
-    nombre              VARCHAR2(40)     NOT NULL,
-    apellido_paterno    VARCHAR2(40)     NOT NULL,
-    apellido_materno    VARCHAR2(40)     NOT NULL,
-    fecha_ingreso       DATE             NOT NULL,
+    empleado_id         NUMBER       DEFAULT empleado_seq.NEXTVAL,
+    es_revisor          NUMBER(1, 0) NOT NULL,
+    es_editor           NUMBER(1, 0) NOT NULL,
+    nombre              VARCHAR2(40) NOT NULL,
+    apellido_paterno    VARCHAR2(40) NOT NULL,
+    apellido_materno    VARCHAR2(40) NOT NULL,
+    fecha_ingreso       DATE         NOT NULL,
     CONSTRAINT empleado_pk PRIMARY KEY (empleado_id)
 );
 Prompt empleado
 
 --3 )Publicación
 CREATE TABLE publicacion(
-    publicacion_id  NUMBER(30)    NOT NULL,
-    bimestre        NUMBER(1)  NOT NULL,
-    fecha           DATE          NOT NULL,
-    titulo          VARCHAR2(40)  NOT NULL,
-    num_vendidos    NUMBER(30)    NULL,
-    anio            NUMBER(30)    NOT NULL,
-    num_generados   NUMBER(30)    NOT NULL,
+    publicacion_id  NUMBER       DEFAULT publicacion_seq.NEXTVAL,
+    bimestre        NUMBER(1)    NOT NULL,
+    fecha           DATE         NOT NULL,
+    titulo          VARCHAR2(40) NOT NULL,
+    num_vendidos    NUMBER(30),
+    anio            NUMBER(30)   NOT NULL,
+    num_generados   NUMBER(30)   NOT NULL,
     CONSTRAINT publicacion_pk PRIMARY KEY (publicacion_id), 
     CONSTRAINT publicacion_bimestre_chk CHECK (bimestre between 1 and 6)
 );
@@ -57,25 +57,25 @@ CREATE TABLE status(
 Prompt status
 --5) Suscriptor
 CREATE TABLE suscriptor(
-    suscriptor_id             NUMBER(30)       NOT NULL,
-    nombre                    VARCHAR2(40)     NOT NULL,
-    apellido_paterno          VARCHAR2(40)     NOT NULL,
-    apellido_materno          VARCHAR2(40)     NOT NULL,
-    fecha_suscripcion         DATE             NOT NULL,
-    email                     VARCHAR2(40)     NOT NULL,
-    vigencia                  VARCHAR2(40)     NOT NULL,
-    calle                     VARCHAR2(40)     NOT NULL,
-    numero                    NUMBER(30)       NOT NULL,
-    colonia                   VARCHAR2(40)     NOT NULL,
-    codigo_postal             NUMBER(30)       NOT NULL,
-    delegacion_municipio      VARCHAR2(40)     NOT NULL,
-    estado                    VARCHAR2(40)     NOT NULL,
+    suscriptor_id             NUMBER        DEFAULT suscriptor_seq.NEXTVAL,
+    nombre                    VARCHAR2(40)  NOT NULL,
+    apellido_paterno          VARCHAR2(40)  NOT NULL,
+    apellido_materno          VARCHAR2(40)  NOT NULL,
+    fecha_suscripcion         DATE          NOT NULL,
+    email                     VARCHAR2(40)  NOT NULL,
+    vigencia                  VARCHAR2(40)  NOT NULL,
+    calle                     VARCHAR2(40)  NOT NULL,
+    numero                    NUMBER(30)    NOT NULL,
+    colonia                   VARCHAR2(40)  NOT NULL,
+    codigo_postal             NUMBER(30)    NOT NULL,
+    delegacion_municipio      VARCHAR2(40)  NOT NULL,
+    estado                    VARCHAR2(40)  NOT NULL,
     CONSTRAINT suscriptor_pk PRIMARY KEY (suscriptor_id)
 );
 Prompt suscriptor
 --6) Area de Interés 
 CREATE TABLE area_de_interes(
-    area_de_interes_id  NUMBER(30)    NOT NULL,
+    area_de_interes_id  NUMBER        DEFAULT area_de_interes_seq.NEXTVAL,
     descripcion         VARCHAR2(40)  NOT NULL,
     clave               VARCHAR2(10)  NOT NULL,
     nombre              VARCHAR2(40)  NOT NULL,
@@ -114,10 +114,10 @@ CREATE TABLE revisor(
 
 --9) Area Revisor
 CREATE TABLE area_revisor(
-    area_revisor_id     NUMBER(30)    NOT NULL,
-    anios_experiencia   NUMBER(4)     NOT NULL,
-    revisor_id          NUMBER(30)    NOT NULL,
-    area_de_interes_id  NUMBER(30)    NOT NULL,
+    area_revisor_id     NUMBER     DEFAULT area_revisor_seq.NEXTVAL,
+    anios_experiencia   NUMBER(4)  NOT NULL,
+    revisor_id          NUMBER(30) NOT NULL,
+    area_de_interes_id  NUMBER(30) NOT NULL,
     CONSTRAINT area_revisor_pk PRIMARY KEY (area_revisor_id),
     CONSTRAINT area_revisor_empleado_fk 
     FOREIGN KEY (revisor_id) REFERENCES revisor(empleado_id),
@@ -128,7 +128,7 @@ Prompt area_revisor
 
 --10) Artículo
 CREATE TABLE articulo(
-    articulo_id         NUMBER(30)    NOT NULL,
+    articulo_id         NUMBER        DEFAULT articulo_seq.NEXTVAL,
     folio               VARCHAR2(18)  NOT NULL,
     titulo              VARCHAR2(40)  NOT NULL,
     sinopsis            VARCHAR2(40)  NOT NULL,
@@ -148,9 +148,9 @@ Prompt articulo
 
 --11) Autor Artículo
 CREATE TABLE autor_articulo(
-    autor_articulo_id    NUMBER(30)    NOT NULL,
-    autor_id             NUMBER(30)    NOT NULL,
-    articulo_id          NUMBER(30)    NOT NULL,
+    autor_articulo_id    NUMBER     DEFAULT autor_articulo_seq.NEXTVAL,
+    autor_id             NUMBER(30) NOT NULL,
+    articulo_id          NUMBER(30) NOT NULL,
     CONSTRAINT autor_articulo_pk PRIMARY KEY (autor_articulo_id),
     CONSTRAINT autor_articulo_autor_fk 
     FOREIGN KEY (autor_id) REFERENCES autor(autor_id),
@@ -161,7 +161,7 @@ Prompt autor_articulo
 
 --12) Historico
 CREATE TABLE historico(
-    historico_id   NUMBER(30)    NOT NULL,
+    historico_id   NUMBER    DEFAULT historico_seq.NEXTVAL,
     status_id      NUMBER(30)    NOT NULL,
     articulo_id    NUMBER(30)    NOT NULL,
     CONSTRAINT historico_pk PRIMARY KEY (historico_id),
@@ -174,11 +174,11 @@ Prompt historico
 
 --13) Pdf
 CREATE TABLE pdf(
-    articulo_id   NUMBER(30)       NOT NULL,
-    pdf_id        NUMBER(30)       NOT NULL,
-    archivo       BLOB             NOT NULL, 
-    descripcion   VARCHAR2(140)    NOT NULL,
-    clave         VARCHAR2(2)     NOT NULL,--A1,..A5
+    articulo_id   NUMBER        DEFAULT pdf_seq.NEXTVAL,
+    pdf_id        NUMBER(30)    NOT NULL,
+    archivo       BLOB          NOT NULL, 
+    descripcion   VARCHAR2(140) NOT NULL,
+    clave         VARCHAR2(2)   NOT NULL,--A1,..A5
     CONSTRAINT pdf_pk PRIMARY KEY (articulo_id,pdf_id),
     CONSTRAINT pdf_articulo_fk FOREIGN KEY (articulo_id) 
     REFERENCES articulo(articulo_id),
@@ -188,10 +188,10 @@ Prompt PDF
 
 --14) Publicación-Artículo
 CREATE TABLE publicacion_articulo(
-    publicacion_articulo_id     NUMBER(30)    NOT NULL,
-    articulo_id                 NUMBER(30)    NOT NULL,
-    publicacion_id              NUMBER(30)    NOT NULL,
-    num_pagina                  NUMBER(30)    NOT NULL,
+    publicacion_articulo_id     NUMBER     DEFAULT publicacion_articulo_seq.NEXTVAL,
+    articulo_id                 NUMBER(30) NOT NULL,
+    publicacion_id              NUMBER(30) NOT NULL,
+    num_pagina                  NUMBER(30) NOT NULL,
     CONSTRAINT publicacion_articulo_pk PRIMARY KEY (publicacion_articulo_id),
     CONSTRAINT pub_articulo_articulo_fk FOREIGN KEY (articulo_id) 
     REFERENCES articulo(articulo_id),
@@ -204,25 +204,25 @@ Prompt publicacion_articulo
 
 --15) Publicacion-Suscriptor
 CREATE TABLE publicacion_suscriptor(
-    publicacion_suscriptor_id    CHAR(40)      NOT NULL,
-    suscriptor_id                NUMBER(30)    NOT NULL,
-    publicacion_id               NUMBER(30)    NOT NULL,
-    fecha_envio                  DATE          NOT NULL,
+    publicacion_suscriptor_id    NUMBER     DEFAULT publicacion_suscriptor_seq.NEXTVAL,
+    suscriptor_id                NUMBER(30) NOT NULL,
+    publicacion_id               NUMBER(30) NOT NULL,
+    fecha_envio                  DATE       NOT NULL,
     CONSTRAINT publicacion_suscriptor_pk PRIMARY KEY (publicacion_suscriptor_id),
     CONSTRAINT pub_suscriptor_suscriptor_fk FOREIGN KEY (suscriptor_id) 
     REFERENCES suscriptor(suscriptor_id),
     CONSTRAINT pub_suscriptor_publicacion_fk FOREIGN KEY (publicacion_id) 
     REFERENCES publicacion(publicacion_id)
 );
-Prompt publicacio_suscriptor
+Prompt publicacion_suscriptor
 
 --16) Revisado-Articulo
 CREATE TABLE revisado_articulo(
-    revisado_articulo_id    NUMBER(30)    NOT NULL,
+    revisado_articulo_id    NUMBER      DEFAULT revisado_articulo_seq.NEXTVAL,
     notificacion            BLOB ,
     calificacion            NUMBER(30),
     revisor_id              NUMBER(30),
-    articulo_id             NUMBER(30)    NOT NULL,
+    articulo_id             NUMBER(30)  NOT NULL,
     CONSTRAINT revisado_articulo_pk PRIMARY KEY (revisado_articulo_id),
     CONSTRAINT rev_articulo_revisor_id_fk FOREIGN KEY (revisor_id) 
     REFERENCES revisor(empleado_id),
