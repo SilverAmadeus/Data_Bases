@@ -40,6 +40,7 @@ CREATE TABLE publicacion(
     num_vendidos    NUMBER(30),
     anio            NUMBER(30)   NOT NULL,
     num_generados   NUMBER(30)   NOT NULL,
+    en_inventario as (num_generados-num_vendidos) VIRTUAL,
     CONSTRAINT publicacion_pk PRIMARY KEY (publicacion_id), 
     CONSTRAINT publicacion_bimestre_chk CHECK (bimestre between 1 and 6)
 );
@@ -63,13 +64,14 @@ CREATE TABLE suscriptor(
     apellido_materno          VARCHAR2(40)  NOT NULL,
     fecha_suscripcion         DATE          NOT NULL,
     email                     VARCHAR2(40)  NOT NULL,
-    vigencia                  VARCHAR2(40)  NOT NULL,
+    meses_vigencia            NUMBER(3)     NOT NULL,
     calle                     VARCHAR2(40)  NOT NULL,
     numero                    NUMBER(30)    NOT NULL,
     colonia                   VARCHAR2(40)  NOT NULL,
     codigo_postal             NUMBER(30)    NOT NULL,
     delegacion_municipio      VARCHAR2(40)  NOT NULL,
     estado                    VARCHAR2(40)  NOT NULL,
+    fecha_vigencia as (ADD_MONTHS(fecha_suscripcion,meses_vigencia)) VIRTUAL,
     CONSTRAINT suscriptor_pk PRIMARY KEY (suscriptor_id)
 );
 Prompt suscriptor
