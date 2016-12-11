@@ -165,9 +165,10 @@ Prompt autor_articulo
 
 --12) Historico
 CREATE TABLE historico(
-    historico_id   NUMBER    DEFAULT historico_seq.NEXTVAL,
-    status_id      NUMBER(30)    NOT NULL,
-    articulo_id    NUMBER(30)    NOT NULL,
+    historico_id   NUMBER      DEFAULT historico_seq.NEXTVAL,
+    status_id      NUMBER(30)  NOT NULL,
+    articulo_id    NUMBER(30)  NOT NULL,
+    fecha          DATE        NOT NULL,
     CONSTRAINT historico_pk PRIMARY KEY (historico_id),
     CONSTRAINT historico_status_fk FOREIGN KEY (status_id)
     REFERENCES status(status_id),
