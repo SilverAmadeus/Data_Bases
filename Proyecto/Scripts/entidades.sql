@@ -6,6 +6,8 @@
 
 --connect moro_proy_admin/moro
 
+Prompt ENTIDADES
+
 --1)Autor
 CREATE TABLE autor(
     autor_id            NUMBER       DEFAULT autor_seq.NEXTVAL,

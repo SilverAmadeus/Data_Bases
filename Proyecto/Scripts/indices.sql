@@ -1,4 +1,3 @@
-
 CREATE UNIQUE INDEX idx_articulo_folio ON articulo (folio);
 
 CREATE UNIQUE INDEX idx_publicacion_titulo ON publicacion(LOWER(titulo));

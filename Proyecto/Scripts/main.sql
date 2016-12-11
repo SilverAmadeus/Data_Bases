@@ -4,3 +4,4 @@ Prompt SCRIPT PRNTICIPAL
 @@entidades.sql
 @@indices.sql
 @@vistas.sql
+@@sinonimos.sql
