@@ -27,6 +27,8 @@ GRANT select any table to moro_proy_admin;
 GRANT insert any table to moro_proy_admin;
 GRANT update any table to moro_proy_admin;
 GRANT delete any table to moro_proy_admin;
+GRANT administer database trigger to moro_proy_admin;
+GRANT SELECT ON dba_users TO moro_proy_admin;
 
 Prompt Administrador creado
 
