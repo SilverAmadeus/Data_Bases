@@ -12,8 +12,8 @@ CREATE TABLE autor(
     ocupacion           VARCHAR2(40) NOT NULL,
     institucion         VARCHAR2(40) NOT NULL,
     nombre              VARCHAR2(40) NOT NULL,
-    apellido_materno    VARCHAR2(40) NOT NULL,
     apellido_paterno    VARCHAR2(40) NOT NULL,
+    apellido_materno    VARCHAR2(40) NOT NULL,
     CONSTRAINT autor_pk PRIMARY KEY (autor_id)
 );
 Prompt autor
@@ -143,9 +143,9 @@ CREATE TABLE articulo(
     CONSTRAINT articulo_editor_fk 
     FOREIGN KEY (editor_id) REFERENCES editor(empleado_id),
     CONSTRAINT articulo_status_fk 
-    FOREIGN KEY (status_id) REFERENCES status(status_id),
-    CONSTRAINT articulo_folio_uk UNIQUE (folio)
+    FOREIGN KEY (status_id) REFERENCES status(status_id)
 );
+--CONSTRAINT articulo_folio_uk UNIQUE (folio) <-- Se elimino porque existe un indice para folio
 Prompt articulo
 
 --11) Autor Artículo
