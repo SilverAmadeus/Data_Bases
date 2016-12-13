@@ -57,7 +57,7 @@ Prompt TRG_PUBLICACION_ARTICULO
 --Este trigger crea un registro nuevo en historico cada que se realiza
 -- un UPDATE en el status de un articulo o INSERT en la tabla articulo
 CREATE OR REPLACE TRIGGER TRG_HISTORICO_STATUS
-BEFORE INSERT OR UPDATE OF status_id ON ARTICULO
+AFTER INSERT OR UPDATE OF status_id ON ARTICULO
 FOR EACH ROW
 DECLARE
 v_historico_id	NUMBER(30);
@@ -85,3 +85,38 @@ BEGIN
 END;
 /
 Prompt TRG_HISTORICO_STATUS
+
+create or replace trigger TRG_EDITOR_TO_REVISOR
+BEFORE UPDATE OF es_revisor ON EMPLEADO
+FOR EACH ROW
+DECLARE
+	CURSOR cur_revisor_update IS
+		select editor_id, folio, titulo from articulo
+		WHERE editor_id = :NEW.empleado_id;
+	v_editor_id		articulo.editor_id%type;
+	v_folio 		articulo.folio%type;
+	v_titulo		articulo.titulo%type;
+BEGIN
+	OPEN cur_revisor_update;
+	DBMS_OUTPUT.PUT_LINE('ARTIUCULOS QUE HA EDITADO');
+	DBMS_OUTPUT.PUT_LINE('|| EDITOR ID || FOLIO || TITULO ||');
+	LOOP
+		FETCH cur_revisor_update INTO v_editor_id, v_folio, v_titulo;
+		EXIT WHEN cur_revisor_update%NOTFOUND;
+		DBMS_OUTPUT.PUT_LINE('	'||v_editor_id || '	' || 
+			v_folio || '	' || v_titulo);
+	END LOOP;
+	IF (cur_revisor_update%ROWCOUNT < 3) THEN
+		CLOSE cur_revisor_update;
+    DBMS_OUTPUT.PUT_LINE('EDITOR ID: '||
+    :new.empleado_id ||' HA EDITADO MENOS DE 3 ARTICULOS');
+    rollback;
+	ELSE 
+		CLOSE cur_revisor_update;
+		DBMS_OUTPUT.PUT_LINE('EDITOR CON ID '|| :new.empleado_id
+			||' AHORA ES REVISOR');
+  END IF;
+END;
+/
+Prompt TRG_EDITOR_TO_REVISOR
+
