@@ -8,3 +8,8 @@ Prompt SCRIPT PRNTICIPAL
 @@triggers.sql
 @@procedimientos.sql
 @@carga_inicial.sql
+
+-- Para checar al final si ocurrio algun error
+SHOW ERRORS;
+
+
