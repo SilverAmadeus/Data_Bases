@@ -70,8 +70,8 @@ BEGIN
 	v_articulo_id := :NEW.articulo_id;
 	v_fecha_status := :NEW.ultima_actualizacion; --Manejar como SYSDATE en la insercion, lo cambie porque abria conflicto al 
 
-	DBMS_OUTPUT.PUT_LINE('STATUS ANTERIOR' || :OLD.status_id);
-	DBMS_OUTPUT.PUT_LINE('STATUS NUEVO' || :NEW.status_id);
+	DBMS_OUTPUT.PUT_LINE('STATUS ANTERIOR ' || :OLD.status_id);
+	DBMS_OUTPUT.PUT_LINE('STATUS NUEVO ' || :NEW.status_id);
 	DBMS_OUTPUT.PUT_LINE('INSERTANDO EN HISTORICO, HISTORICO ID: ' 
 		|| v_historico_id || ' STATUS ID: ' || v_status_id
 		|| ' FECHA: ' || v_fecha_status || ' ARTICULO ID: '
@@ -103,15 +103,15 @@ BEGIN
 	LOOP
 		FETCH cur_revisor_update INTO v_editor_id, v_folio, v_titulo;
 		EXIT WHEN cur_revisor_update%NOTFOUND;
-		DBMS_OUTPUT.PUT_LINE('	'||v_editor_id || '	' || 
+		DBMS_OUTPUT.PUT_LINE('	'||v_editor_id || '	' ||
 			v_folio || '	' || v_titulo);
 	END LOOP;
 	IF (cur_revisor_update%ROWCOUNT < 3) THEN
 		CLOSE cur_revisor_update;
-    DBMS_OUTPUT.PUT_LINE('EDITOR ID: '||
+    RAISE_APPLICATION_ERROR(-20010, 'EDITOR ID: '||
     :new.empleado_id ||' HA EDITADO MENOS DE 3 ARTICULOS');
     rollback;
-	ELSE 
+	ELSE
 		CLOSE cur_revisor_update;
 		DBMS_OUTPUT.PUT_LINE('EDITOR CON ID '|| :new.empleado_id
 			||' AHORA ES REVISOR');
@@ -119,11 +119,33 @@ BEGIN
 END;
 /
 Prompt TRG_EDITOR_TO_REVISOR
-/*
-create or replace trigger TRG_PUBLICACION
-AFTER INSERT OF publicacion_id ON PUBLICACION
-FOR EACH ROW
-	CURSOR cur_suscriptor_valido IS
-		SELECT suscriptor_id from suscriptor 
 
-*/
+create or replace trigger TRG_PDF_AMOUNT
+BEFORE INSERT on PDF
+FOR EACH ROW
+DECLARE
+	CURSOR cur_pdf_amount IS
+		select pdf_id from PDF
+		WHERE articulo_id = :NEW.articulo_id;
+	v_pdf_id	pdf.pdf_id%type;
+BEGIN
+	OPEN cur_pdf_amount;
+	DBMS_OUTPUT.PUT_LINE('PDF IDs de ARTICULO ID '|| :NEW.articulo_id);
+	LOOP
+		FETCH cur_pdf_amount INTO v_pdf_id;
+		EXIT WHEN cur_pdf_amount%NOTFOUND;
+		DBMS_OUTPUT.PUT_LINE(v_pdf_id);
+	END LOOP;
+
+	IF (cur_pdf_amount%ROWCOUNT >= 5) THEN
+		CLOSE cur_pdf_amount;
+		RAISE_APPLICATION_ERROR(-20000, 'ARTICULO CON ID ' || :NEW.articulo_id || 
+    ' CUENTA CON EL MAXIMO DE PDFs');
+		rollback;
+	ELSE
+		CLOSE cur_pdf_amount;
+		DBMS_OUTPUT.PUT_LINE('PDF REGISTRADO EXITOSAMENTE');
+	END IF;
+END;
+/
+Prompt TRG_PDF_AMOUNT
