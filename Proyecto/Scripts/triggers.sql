@@ -65,10 +65,10 @@ v_status_id 	NUMBER(30);
 v_articulo_id	NUMBER(30);
 v_fecha_status	DATE;
 BEGIN
-	SELECT historico_seq.nextval INTO v_historico_id FROM dual;
+	SELECT historico_seq.nextval INTO v_historico_id FROM dual;--AWESOME!!
 	v_status_id := :NEW.status_id;
 	v_articulo_id := :NEW.articulo_id;
-	v_fecha_status := SYSDATE;
+	v_fecha_status := :NEW.ultima_actualizacion; --Manejar como SYSDATE en la insercion, lo cambie porque abria conflicto al 
 
 	DBMS_OUTPUT.PUT_LINE('STATUS ANTERIOR' || :OLD.status_id);
 	DBMS_OUTPUT.PUT_LINE('STATUS NUEVO' || :NEW.status_id);

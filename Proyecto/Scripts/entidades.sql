@@ -15,7 +15,7 @@ CREATE TABLE autor(
     institucion         VARCHAR2(40) NOT NULL,
     nombre              VARCHAR2(40) NOT NULL,
     apellido_paterno    VARCHAR2(40) NOT NULL,
-    apellido_materno    VARCHAR2(40) NOT NULL,
+    apellido_materno    VARCHAR2(40) ,
     CONSTRAINT autor_pk PRIMARY KEY (autor_id)
 );
 Prompt autor
@@ -38,9 +38,9 @@ CREATE TABLE publicacion(
     publicacion_id  NUMBER       DEFAULT publicacion_seq.NEXTVAL,
     bimestre        NUMBER(1)    NOT NULL,
     fecha           DATE         NOT NULL,
-    titulo          VARCHAR2(40) NOT NULL,
+    titulo          VARCHAR2(60) NOT NULL,
     num_vendidos    NUMBER(30),
-    anio            NUMBER(30)   NOT NULL,
+    anio            DATE         NOT NULL,
     num_generados   NUMBER(30)   NOT NULL,
     en_inventario as (num_generados-num_vendidos) VIRTUAL,
     CONSTRAINT publicacion_pk PRIMARY KEY (publicacion_id), 
@@ -134,9 +134,10 @@ Prompt area_revisor
 CREATE TABLE articulo(
     articulo_id         NUMBER        DEFAULT articulo_seq.NEXTVAL,
     folio               VARCHAR2(18)  NOT NULL,
-    titulo              VARCHAR2(40)  NOT NULL,
-    sinopsis            VARCHAR2(40)  NOT NULL,
+    titulo              VARCHAR2(70)  NOT NULL,
+    sinopsis            VARCHAR2(140)  NOT NULL,
     area_de_interes_id  NUMBER(30)    NOT NULL,
+    ultima_actualizacion DATE         NOT NULL,
     status_id           NUMBER(30)    DEFAULT 1, --Siempre que se registra se asigna el status RECIBIDO
     editor_id           NUMBER(30), 
     CONSTRAINT articulo_pk PRIMARY KEY (articulo_id),

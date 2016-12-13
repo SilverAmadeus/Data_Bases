@@ -18,7 +18,7 @@ INSERT INTO publicacion(bimestre,fecha,titulo,anio,num_generados,num_vendidos)
 VALUES (06,TO_DATE('13/11/2014','dd/mm/yyyy'),'Acta scientiarum',TO_DATE('2014','YYYY'),100,14);
 
 INSERT INTO publicacion(bimestre,fecha,titulo,anio,num_generados,num_vendidos)
-VALUES (01,TO_DATE('01/01/2015','dd/mm/yyyy'),'Acta scientiarum',TO_DATE('2015','YYYY'),540,500);
+VALUES (01,TO_DATE('01/01/2015','dd/mm/yyyy'),'Muy interesante',TO_DATE('2015','YYYY'),540,500);
 
 INSERT INTO publicacion(bimestre,fecha,titulo,anio,num_generados,num_vendidos)
 VALUES (02,TO_DATE('03/03/2015','dd/mm/yyyy'),'Actualidades pedagogicas',TO_DATE('2015','YYYY'),230,120);
