@@ -5,4 +5,3 @@
 @@./carga_inicial/publicacion.sql
 @@./carga_inicial/suscriptor.sql
 @@./carga_inicial/empleado.sql
-

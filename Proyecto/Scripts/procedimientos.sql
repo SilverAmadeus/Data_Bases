@@ -17,6 +17,7 @@ create or replace PROCEDURE reg_empleado_Editor
 	v_nombre 		IN 	varchar2,
 	v_ap_paterno	IN 	varchar2,
 	v_ap_materno	IN 	varchar2,
+	v_fecha_ingreso IN  date,
 	v_grado			IN 	varchar2,
 	v_email			IN 	varchar2,
 	v_cedula		IN  number
@@ -26,7 +27,7 @@ BEGIN
 	insert into empleado (es_revisor, es_editor, nombre,
 		apellido_paterno, apellido_materno, fecha_ingreso)
 	values (0, 1, v_nombre, v_ap_paterno, 
-		v_ap_materno, SYSDATE);
+		v_ap_materno, TO_DATE(v_fecha_ingreso,'DD/MM/YYYY'));
 	insert into editor (empleado_id, grado, email, cedula)
 	values (empleado_seq.CURRVAL, v_grado, v_email, v_cedula);
   DBMS_OUTPUT.PUT_LINE('-- EDITOR REGISTRADO -- ');
@@ -34,6 +35,7 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE(' | Nombre:              ' || v_nombre);
   DBMS_OUTPUT.PUT_LINE(' | Apellido Paterno:    ' || v_ap_paterno);
   DBMS_OUTPUT.PUT_LINE(' | Apellido Materno:    ' || v_ap_materno);
+  DBMS_OUTPUT.PUT_LINE(' | Fecha de Ingreso:    ' || v_fecha_ingreso); 
   DBMS_OUTPUT.PUT_LINE(' | Grado:               ' || v_grado);
   DBMS_OUTPUT.PUT_LINE(' | Email:               ' || v_email);
   DBMS_OUTPUT.PUT_LINE(' | Cedula:              ' || v_cedula);
@@ -46,6 +48,7 @@ create or replace PROCEDURE reg_empleado_Revisor
 	v_nombre 		IN 	varchar2,
 	v_ap_paterno	IN 	varchar2,
 	v_ap_materno	IN 	varchar2,
+	v_fecha_ingreso IN  date,
 	v_num_contrato	IN 	number,
 	v_email			IN 	varchar2,
 	v_fin_contrato	IN  date
@@ -55,7 +58,7 @@ BEGIN
 	insert into empleado (es_revisor, es_editor, nombre,
 		apellido_paterno, apellido_materno, fecha_ingreso)
 	values (1, 0, v_nombre, v_ap_paterno, 
-		v_ap_materno, SYSDATE);
+		v_ap_materno,TO_DATE(v_fecha_ingreso,'DD/MM/YYYY'));
 	insert into revisor (empleado_id, num_contrato, email, fin_contrato)
 	values (empleado_seq.CURRVAL, v_num_contrato, v_email, 
 		TO_DATE(v_fin_contrato, 'DD/MM/YYYY') );
@@ -64,6 +67,7 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE(' | Nombre:              ' || v_nombre);
   DBMS_OUTPUT.PUT_LINE(' | Apellido Paterno:    ' || v_ap_paterno);
   DBMS_OUTPUT.PUT_LINE(' | Apellido Materno:    ' || v_ap_materno);
+  DBMS_OUTPUT.PUT_LINE(' | Fecha de Ingreso:    ' || v_fecha_ingreso);
   DBMS_OUTPUT.PUT_LINE(' | # Contrato:	        ' || v_num_contrato);
   DBMS_OUTPUT.PUT_LINE(' | Email:               ' || v_email);
   DBMS_OUTPUT.PUT_LINE(' | Fin de Contrato:     ' || v_fin_contrato);

@@ -31,7 +31,7 @@ VersionId,Version_ID,Copyright,Global_User_ID,Row_Time_Stamp
 
 Diagram
 DiagramId,Version_ID,VersionId,LastUpdate,CreateDate,ActiveModel,ActiveSubmodel,VSplitterPosition,X,Y,Width,Height,DiagramNameId,AuthorId,CompanyId,VersionNoId,CopyrightStringId,DefinitionId,UnificationOptionId,FileNameId,CopyrightYearStringId,DiagramName,CodePage,SignatureGUID,ReleaseName,Flags,Global_User_ID,Row_Time_Stamp
-1,1,800,12/12/2016 23:04:17G,12/12/2016 23:04:17G,1,1,180,0,0,0,0,124,41,42,43,42,0,44,161,0,NetMag.DM1,1252,NULL,"",0,1,0
+1,1,800,12/13/2016 04:05:48G,12/12/2016 23:04:17G,1,1,180,0,0,0,0,124,41,42,43,42,0,44,161,0,NetMag.DM1,1252,NULL,"",0,1,0
 
 Model
 DiagramId,ModelId,Model_ID,ModelType,PlatformId,NamePrefix,SpaceHandling,CaseHandling,GenPrimaryKey,GenAlternateKey,GenInversionEntry,GenForeignKey,Notation,ModelNameId,RowOverhead,TableOverhead,IndexOverhead,BlobOverhead,BlobBlockSize,Global_User_ID,Row_Time_Stamp
@@ -122,7 +122,7 @@ DiagramDisplay
 DiagramId,ModelId,SubmodelId,DiagramDisplay_ID,Submodel_ID,PlatformId,Animate,ZoomFactor,HviewSize,VviewSize,HorizontalScrollPosition,VerticalScrollPosition,PageOrientation,PageSize,DisplayFormat,EntityDisplayInfo,ViewDisplayFormat,ViewDisplayInfo,Shadow,CompleteRoleName,ShowVerbs,ShowCardinality,MethodologyId,StraightRelLine,PageBoundary,ShowViewRelationship,ShowView,HideTrigger,Global_User_ID,Row_Time_Stamp,ShowSchemaObjEdge,ShowSchemaObj,SchemaObjDisplayFormat,ShowRelationshipName,ShowLogicalRelationshipName,ShowTriggerLabel,ShowShape,ShowShapeEdge,ShowShapeName,ShowShapeEdgeName,ShowShapeEdgeVerbs,TransformationDisplayFormat
 1,2,1,10,10,0,0,7514,0,0,-468,-136,1,1,9,3269,1,0,1,0,1,1,0,0,0,0,0,0,1453,0,1,6,7,0,0,0,0,0,1,0,1,10
 1,4,1,12,12,0,0,7514,0,0,134,205,1,1,9,3269,1,0,1,0,1,1,0,0,0,0,0,0,2157,0,1,6,7,0,0,0,0,0,1,0,1,10
-1,1,1,1,1,0,0,6183,0,0,-322,173,1,1,8,3269,1,0,1,0,1,1,0,0,0,0,0,1,23,0,1,6,7,0,0,0,0,0,1,0,1,10
+1,1,1,1,1,0,0,6183,0,0,-322,-313,1,1,8,3269,1,0,1,0,1,1,0,0,0,0,0,1,23,0,1,6,7,0,0,0,0,0,1,0,1,10
 1,3,1,11,11,0,0,7514,0,0,134,155,1,1,9,3269,1,0,1,0,1,1,0,0,0,0,0,0,1808,0,1,6,7,0,0,0,0,0,1,0,1,10
 
 GridDisplay
@@ -937,13 +937,13 @@ DiagramId,ModelId,EntityId,AttributeId,Attribute_ID,Entity_ID,UserDatatypeId,Rul
 1,2,10,8,156,30,0,0,0,0,143,143,0,0,0,0,141,0,1,0,N,0,0,3,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1632,0
 1,3,2,7,206,40,0,0,0,0,29,29,0,0,29,0,28,0,40,0,N,0,0,5,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1919,0
 1,3,2,9,207,40,0,0,0,0,69,162,0,0,162,162,28,1,40,0,N,0,0,6,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1920,0
-1,1,6,1,22,6,0,0,0,0,47,47,0,0,0,0,28,0,40,0,N,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,311,0
+1,1,6,1,22,6,0,0,0,0,47,47,0,0,0,0,28,0,40,0,N,1,1,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,311,0
 1,3,2,10,208,40,0,0,0,0,156,156,0,0,156,0,28,0,40,0,N,0,0,7,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1921,0
-1,1,6,2,23,6,0,0,0,0,30,30,0,0,0,0,10,0,140,-1,N,1,1,3,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,312,0
+1,1,6,2,23,6,0,0,0,0,30,30,0,0,0,0,10,0,140,-1,N,1,1,5,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,312,0
 1,3,2,11,205,40,0,0,0,0,64,64,0,0,0,0,10,0,18,-1,N,0,0,2,0,0,1,0,0,0,0,0,0,18,0,0,0,0,0,0,1918,0
-1,1,6,3,24,6,0,0,0,0,31,31,0,0,0,0,10,0,40,-1,N,1,1,4,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,313,0
-1,1,6,6,98,6,0,0,0,0,144,144,0,0,0,0,106,0,40,-1,N,1,1,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1010,0
-1,1,6,7,112,6,0,0,0,0,19,19,0,0,19,19,28,0,40,0,N,0,0,5,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1430,0
+1,1,6,3,24,6,0,0,0,0,31,31,0,0,0,0,10,0,2,-1,N,1,1,3,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,313,0
+1,1,6,6,98,6,0,0,0,0,144,144,0,0,0,0,106,0,40,-1,N,1,1,4,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1010,0
+1,1,6,7,112,6,0,0,0,0,19,19,0,0,19,19,28,0,40,0,N,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1430,0
 1,3,15,1,251,50,0,0,0,0,105,105,0,0,0,0,28,1,40,0,N,0,0,3,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2024,0
 1,3,15,2,252,50,0,0,0,0,104,104,0,0,0,0,28,0,40,0,N,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2025,0
 1,3,15,3,253,50,0,0,0,0,107,107,0,0,0,0,106,1,-2,-1,N,0,0,2,0,0,1,0,0,0,0,0,0,2048,0,0,0,0,0,0,2026,0
@@ -976,7 +976,6 @@ DiagramId,ModelId,EntityId,AttributeId,Attribute_ID,Entity_ID,UserDatatypeId,Rul
 1,1,20,1,103,21,0,0,0,0,156,156,0,0,0,0,28,0,40,0,N,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1396,0
 1,1,20,2,104,21,0,0,0,0,13,13,0,0,0,0,10,0,40,-1,N,1,1,3,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1397,0
 1,1,20,3,360,21,0,0,0,0,31,31,0,0,0,0,10,0,4,-1,N,1,1,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2512,0
-1,1,20,4,361,21,0,0,0,0,30,30,0,0,0,0,10,0,40,-1,N,1,1,4,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2513,0
 1,2,12,1,157,31,0,0,0,0,85,85,0,0,0,0,28,0,40,0,N,0,0,4,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1639,0
 1,2,12,3,158,31,0,0,0,0,86,86,0,0,0,0,10,0,40,-1,N,0,0,2,0,0,1,0,0,0,0,0,0,40,0,0,0,0,0,0,1640,0
 1,3,4,1,213,42,0,0,0,0,34,34,0,0,0,0,28,0,40,0,N,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1938,0
@@ -1108,13 +1107,14 @@ DiagramId,ModelId,EntityId,AttributeId,PrimaryKey_ID,Attribute_ID,SequenceNo,Glo
 1,3,1,6,22,201,1,0,0
 1,2,7,7,38,145,1,0,0
 1,2,12,4,47,160,1,0,0
-1,1,6,1,5,22,1,0,0
+1,1,6,1,5,22,2,0,0
 1,3,21,1,67,275,1,0,0
 1,2,17,7,59,180,1,0,0
 1,4,15,2,54,334,1,0,0
 1,4,10,6,42,318,1,0,0
 1,1,1,6,1,6,1,0,0
 1,4,20,1,63,355,1,0,0
+1,1,6,7,69,112,1,0,0
 1,3,4,1,31,213,1,0,0
 1,1,21,1,20,105,1,0,0
 1,2,15,2,56,170,1,0,0
@@ -1320,7 +1320,7 @@ DiagramId,ModelId,EntityId,IndexId,AttributeId,IndexColumn_ID,Attribute_ID,Index
 1,4,8,1,4,63,311,61,1,A,2326,0
 1,1,17,1,7,18,67,17,1,A,951,0
 1,4,17,1,7,69,344,67,1,A,2399,0
-1,1,6,1,1,6,22,6,1,A,314,0
+1,1,6,1,1,6,22,6,2,A,314,0
 1,4,6,1,1,61,298,59,1,A,2303,0
 1,3,21,1,1,56,275,54,1,A,2077,0
 1,2,18,1,1,38,187,36,1,A,1705,0
@@ -1328,6 +1328,7 @@ DiagramId,ModelId,EntityId,IndexId,AttributeId,IndexColumn_ID,Attribute_ID,Index
 1,4,15,1,2,68,334,66,1,A,2380,0
 1,3,3,1,4,43,209,41,1,A,1934,0
 1,3,12,1,4,49,242,47,1,A,2000,0
+1,1,6,1,7,73,112,6,1,A,2516,0
 1,4,4,1,1,60,295,58,1,A,2292,0
 1,1,4,1,1,4,17,4,1,A,165,0
 1,1,13,1,4,15,56,13,1,A,774,0
@@ -1394,7 +1395,7 @@ DiagramId,ModelId,RelationshipId,ForeignKey_ID,New_Child_Entity_ID,New_Parent_En
 1,1,28,31,2,21,20,2,0,22,0,23,0,23,0,25,0,22,22,22,22,22,0,0,0,0,0,0,0,0,0,0,1420,0
 1,4,21,81,56,63,12,2,0,22,23,0,0,24,0,24,25,0,22,22,22,22,0,0,0,0,0,0,0,0,0,0,2461,0
 1,1,29,32,22,2,2,21,0,22,0,23,0,23,0,25,0,22,22,22,22,22,0,0,0,0,0,0,0,0,0,0,1424,0
-1,1,30,33,6,2,2,6,0,22,0,23,0,23,0,25,0,22,22,22,22,22,0,0,0,0,0,0,0,0,0,0,1428,0
+1,1,30,33,6,2,2,6,0,94,0,23,0,23,0,25,0,22,22,22,22,22,0,0,0,0,0,0,0,0,0,0,1428,0
 1,4,23,82,68,67,17,18,0,22,23,0,0,23,0,25,25,0,22,22,22,22,0,0,0,0,0,0,0,0,0,0,2464,0
 1,4,24,83,68,60,7,18,0,22,23,0,0,24,0,25,25,0,22,22,22,22,0,0,0,0,0,0,0,0,0,0,2467,0
 1,4,26,84,70,69,20,21,0,22,23,0,0,24,0,25,25,0,22,22,22,22,0,0,0,0,0,0,0,0,0,0,2470,0
@@ -1476,7 +1477,7 @@ ForeignKeyColumn_Id,DiagramId,ModelId,RelationshipId,ForeignKey_ID,SequenceNo,Pa
 63,1,3,21,63,6,12,4,2,9,10,6,2113,0
 34,1,2,4,34,2,1,6,4,2,1,6,1725,0
 48,1,2,26,48,2,20,1,21,2,20,1,1767,0
-33,1,1,30,33,5,2,3,6,7,2,3,1431,0
+33,1,1,30,33,1,2,3,6,7,2,3,1431,0
 62,1,3,18,62,5,2,3,15,5,2,3,2110,0
 77,1,4,15,77,3,13,4,14,3,10,6,2450,0
 47,1,2,24,47,3,7,7,18,4,7,7,1764,0
@@ -1676,9 +1677,9 @@ DiagramId,ModelId,SubmodelId,RelationshipId,RelationshipDisplay_ID,ForeignKey_ID
 1,1,1,24,27,27,1,5000,N,N,0,0,0,0,0,3,0,145,-14,0,0,0,51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1147,0
 1,2,1,28,49,49,10,5000,N,N,0,0,0,0,0,3,0,47,-35,0,0,153,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1771,0
 1,2,1,29,50,50,10,5000,N,N,0,0,0,0,0,3,0,153,-34,0,0,-76,-38,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1774,0
-1,1,1,26,29,29,1,5000,N,N,0,0,0,0,0,3,0,135,-51,0,0,-79,51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1406,0
+1,1,1,26,29,29,1,5000,N,N,0,0,0,0,0,3,0,125,-42,0,0,-79,51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1406,0
 1,2,1,30,51,51,10,5000,N,N,0,0,0,0,0,3,0,153,0,0,0,-149,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1777,0
-1,1,1,28,31,31,1,5000,N,N,0,0,0,0,0,3,0,42,-51,0,0,166,43,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1421,0
+1,1,1,28,31,31,1,5000,N,N,0,0,0,0,0,3,0,39,-42,0,0,166,43,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1421,0
 1,1,1,29,32,32,1,5000,N,N,0,0,0,0,0,3,0,166,-42,0,0,-78,-51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1425,0
 1,1,1,30,33,33,1,5000,N,N,0,0,0,0,0,3,0,166,0,0,0,-164,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1429,0
 
@@ -1712,9 +1713,9 @@ Path_Node_ID,RelationshipDisplay_ID,View_Relationship_Display_ID,SupertypeDispla
 20,26,0,0,0,0,0,154,-1029,1
 21,26,0,0,0,0,0,154,-1027,2
 22,27,0,0,0,0,0,406,-667,1
-23,29,0,0,0,0,0,619,215,1
+23,29,0,0,0,0,0,600,215,1
 24,29,0,0,0,0,0,614,215,2
-25,31,0,0,0,0,0,526,-164,1
+25,31,0,0,0,0,0,514,-164,1
 26,32,0,0,0,0,0,615,-249,1
 27,34,0,0,0,0,0,104,68,1
 28,34,0,0,0,0,0,104,64,2
@@ -1845,32 +1846,33 @@ Lineage_Stream_Display_ID,Lineage_Stream_ID,Submodel_ID,DesiredRoutingStyle,Pare
 
 SmallString
 String_Id,Data,Overflow,ConstantString,Row_Time_Stamp
-171,"",1,0,0
-172,OraInsTrigLib,0,0,0
+170,OraDelTrigLib,0,0,0
 1,Main,0,0,0
-173,"",1,0,0
+171,"",1,0,0
 2,Diagram specific data dictionary.,0,0,0
-174,OraUpdtTrigger,0,0,0
+172,OraInsTrigLib,0,0,0
 3,Logical,0,0,0
-175,"",1,0,0
+173,"",1,0,0
 4,Main Model,0,0,0
-176,OraDelTrigger,0,0,0
+174,OraUpdtTrigger,0,0,0
 5,Data Movement Rules,0,0,0
-177,"",1,0,0
-178,OraInsTrigger,0,0,0
+175,"",1,0,0
+176,OraDelTrigger,0,0,0
 7,Y,0,0,0
-179,"",1,0,0
+177,"",1,0,0
 8,AUTOR,0,0,0
-180,proyecto_bd,0,0,0
+178,OraInsTrigger,0,0,0
 9,CH,0,0,0
-181,proyecto_PLUS,0,0,0
+179,"",1,0,0
 10,VAR,0,0,0
-182,HISTORICO_ID,0,0,0
+180,proyecto_bd,0,0,0
 11,OCUPACION,0,0,0
-183,ULTIMA_ACTUALIZACION,0,0,0
+181,proyecto_PLUS,0,0,0
 12,INSTITUCION,0,0,0
-184,NetMag_PLUS_DD,0,0,0
+182,HISTORICO_ID,0,0,0
+183,ULTIMA_ACTUALIZACION,0,0,0
 13,NOMBRE,0,0,0
+184,NetMag_PLUS_DD,0,0,0
 14,APELLIDO_PATERNO,0,0,0
 15,APELLIDO_MATERNO,0,0,0
 16,AUTOR_ID,0,0,0
@@ -1980,7 +1982,6 @@ String_Id,Data,Overflow,ConstantString,Row_Time_Stamp
 167,proyecto,0,0,0
 168,OraUpdtTrigLib,0,0,0
 169,"",1,0,0
-170,OraDelTrigLib,0,0,0
 
 LargeString
 String_Id,Data,Row_Time_Stamp
@@ -2893,8 +2894,6 @@ StringUsage_Id,UniqueObject_Id,StringUsageType_Id,String_Id,Row_Time_Stamp
 374,1426,14,19,0
 377,1430,15,19,0
 378,1430,14,19,0
-379,1430,11,19,0
-380,1430,95,19,0
 381,1432,14,64,0
 382,1432,15,64,0
 383,1433,37,167,0
@@ -3613,8 +3612,6 @@ StringUsage_Id,UniqueObject_Id,StringUsageType_Id,String_Id,Row_Time_Stamp
 1096,1720,39,160,0
 1097,2512,14,31,0
 1098,2512,15,31,0
-1099,2513,14,30,0
-1100,2513,15,30,0
 1101,2514,14,183,0
 1102,2514,15,183,0
 1103,2515,14,53,0
@@ -3895,7 +3892,7 @@ Identity_Value_ID,Table_Name,Column_Name,Next_Valid_Value,Global_User_ID,Row_Tim
 14,Bound_Dictionary_Object,Bound_Dictionary_Object_ID,1,0,0
 15,CheckConstraints,CheckConstraints_ID,1,0,0
 16,Circular_Layout,Circular_Layout_ID,13,0,0
-17,ColorDefault,ColorDefault_ID,720,0,0
+17,ColorDefault,ColorDefault_ID,728,0,0
 18,Column_Usage,Column_Usage_ID,1,0,0
 19,Components_Layout,Components_Layout_ID,13,0,0
 20,Configuration_Option,Configuration_Option_ID,1,0,0
@@ -3940,7 +3937,7 @@ Identity_Value_ID,Table_Name,Column_Name,Next_Valid_Value,Global_User_ID,Row_Tim
 59,Group_Meta_Table,Group_Meta_Table_ID,1,0,0
 60,Group_Type,Group_Type_ID,1,0,0
 61,Hierarchical_Layout,Hierarchical_Layout_ID,13,0,0
-62,IndexColumn,IndexColumn_ID,73,0,0
+62,IndexColumn,IndexColumn_ID,74,0,0
 63,Indexes,Indexes_ID,71,0,0
 64,IndexStorage,IndexStorage_ID,71,0,0
 65,InterModelObjectLink,InterModelObjectLink_ID,1,0,0
@@ -3973,7 +3970,7 @@ Identity_Value_ID,Table_Name,Column_Name,Next_Valid_Value,Global_User_ID,Row_Tim
 92,Pipeline,Pipeline_ID,1,0,0
 93,Pipeline_Member,Pipeline_Member_ID,1,0,0
 94,Pipeline_Member_Property,Pipeline_Member_Property_ID,1,0,0
-95,PrimaryKey,PrimaryKey_ID,69,0,0
+95,PrimaryKey,PrimaryKey_ID,70,0,0
 96,Proc,Proc_ID,1,0,0
 97,Project,Project_ID,1,0,0
 98,Project_Link,Project_Link_ID,1,0,0
@@ -6406,9 +6403,9 @@ UniqueObject_Id,ObjectType_Id,Model_ID,Object_Domain_ID,InterModel_Id,IntraModel
 2511,74,12,1,12,0,2fd20ef15e8c4c2fbdced7aea91407ab,a0460469b08d4a949b220da6dc7d226b,12/08/2016 18:05:51G,1481220351,1,0,0
 253,38,2,1,0,0,fa809dadb8614ca1b63393d2ab104a10,bef6f020dabb45559cb238e73ba7b0c9,10/13/2016 07:24:17G,1476335576,1,0,0
 2512,1,1,1,3,20,b63109c14e4742a7a74b775f24b03ca7,6650d57af76a40cbb27f3bcd9e717db4,12/13/2016 05:03:50G,1481605357,1,0,0
-2513,1,1,1,4,20,1822fe0385d84580aaded895427ae944,5f5ce240c0834b37a6c1f62792ab2adb,12/13/2016 05:03:50G,1481605357,1,0,0
 2514,1,1,1,12,2,2a9d93702f914635a031424838c6afda,ce6be78f02134286bc5d7b8a304a6dda,12/13/2016 05:03:50G,1481605382,1,0,0
 2515,1,1,1,5,21,9d875ecb60994d42b80a931db5b0c05f,b6183e17c33041b282a0b67375619b5a,12/13/2016 05:03:50G,1481605409,1,0,0
+2516,28,1,1,0,0,c682df79dd364b3692101c010a893d65,96e02a9862884d59a46a644ef602e9ef,12/13/2016 10:05:47G,1481605675,1,0,0
 262,38,2,1,0,0,8fd048a5e807431388998498c9529f77,a27640f0bc954aeba81122a6700808c9,10/13/2016 07:24:17G,1476335576,1,0,0
 276,38,2,1,0,0,0e27c4ecc2774d919fd7f54d40f10290,b667f651a8b94b8e9083de660960bae2,10/13/2016 07:24:17G,1476335576,1,0,0
 277,38,2,1,0,0,b8226e2e6380487ba499d3be8b1ea26d,10562b235f914cc3ba87cfb8e7936449,10/13/2016 07:24:17G,1476335576,1,0,0

@@ -98,7 +98,7 @@ DECLARE
 	v_titulo		articulo.titulo%type;
 BEGIN
 	OPEN cur_revisor_update;
-	DBMS_OUTPUT.PUT_LINE('ARTIUCULOS QUE HA EDITADO');
+	DBMS_OUTPUT.PUT_LINE('ARTICULOS QUE HA EDITADO');
 	DBMS_OUTPUT.PUT_LINE('|| EDITOR ID || FOLIO || TITULO ||');
 	LOOP
 		FETCH cur_revisor_update INTO v_editor_id, v_folio, v_titulo;
