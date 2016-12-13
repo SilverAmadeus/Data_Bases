@@ -70,4 +70,3 @@ BEGIN
 END reg_empleado_Revisor;
 /
 Prompt Procedimiento_reg_empleado_Revisor
-

@@ -5,5 +5,6 @@ Prompt SCRIPT PRNTICIPAL
 @@indices.sql
 @@vistas.sql
 @@sinonimos.sql
---@@triggers.sql
---@@procedimientos.sql
+@@triggers.sql
+@@procedimientos.sql
+@@carga_inicial.sql
