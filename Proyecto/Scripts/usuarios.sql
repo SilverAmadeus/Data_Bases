@@ -1,18 +1,7 @@
---Por el momento ejecutar  como sysdba
+--Ejecutar como SYSDBA
 CREATE USER moro_proy_admin 
 IDENTIFIED BY moro QUOTA unlimited ON USERS;
 
---Alternativa 1
-/*
-GRANT create session, create table, create view, 
-create synonym, create public synonym, create sequence, 
-create procedure, create trigger, create user, alter user, 
-drop any table, backup any table, select any table, 
-insert any table, update any table, delete any table
-to moro_proy_admin;
-
-*/
---Alternativa 2
 GRANT create session to moro_proy_admin;
 GRANT create table to moro_proy_admin;
 GRANT create view to moro_proy_admin;
