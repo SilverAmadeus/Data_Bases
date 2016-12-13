@@ -87,3 +87,4 @@ VALUES('Ingeniero','UNAM','Pio','Baroja',null);
 INSERT INTO autor(ocupacion,institucion,nombre,apellido_paterno,apellido_materno)
 VALUES('Fisico','UNAM','Virginia','Woolf',null);
 
+commit;

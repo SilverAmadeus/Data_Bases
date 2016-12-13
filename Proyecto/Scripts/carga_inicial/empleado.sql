@@ -15,6 +15,8 @@ INSERT INTO empleado(es_revisor,es_editor,nombre,apellido_paterno,apellido_mater
 VALUES (0,0,'Gerardo','Lopez','Corona',TO_DATE('21/05/2014','dd/mm/yyyy'));
 
 
+-- Esta seccion puede ir en el archivo donde ejecucion-trigger-secuencia.sql
+
 --Revisores
 EXECUTE reg_empleado_Revisor('Eduardo','Carrasco','Garcia','02/02/2014',0256,'eduardo@something.com','20/03/2016');
 

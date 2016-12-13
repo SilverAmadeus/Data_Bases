@@ -44,3 +44,4 @@ VALUES (02,TO_DATE('01/01/2016','dd/mm/yyyy'),'Boletin de la Academia Nacional d
 INSERT INTO publicacion(bimestre,fecha,titulo,anio,num_generados,num_vendidos)
 VALUES (03,TO_DATE('21/03/2016','dd/mm/yyyy'),'Boletin de la revista latinoamericana de desarrollo humano',TO_DATE('2016','YYYY'),222,111);
 
+commit ;

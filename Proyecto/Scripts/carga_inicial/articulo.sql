@@ -668,3 +668,5 @@ INSERT INTO articulo(folio,titulo,sinopsis,ultima_actualizacion,area_de_interes_
 VALUES ('ART000000000000113','Psicoevolucion','Algo muy cool',TO_DATE('01/01/2014','dd/mm/yyyy'),10);
 
 INSERT INTO autor_articulo(autor_id) values (2);
+
+commit;

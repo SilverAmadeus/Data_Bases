@@ -86,4 +86,4 @@ fecha_suscripcion,email,meses_vigencia,calle,numero,colonia,codigo_postal,
 delegacion_municipio,estado)
 VALUES ('Karla','Barrios','Islas',TO_DATE('20/11/2016','dd/mm/yyyy'),'malware@bases.com',7,'Plaza Madrid',698,'Neza',58621,'Benito Juarez','Aguascalientes');
 
-
+commit;
