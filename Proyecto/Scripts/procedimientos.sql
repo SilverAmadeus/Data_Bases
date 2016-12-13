@@ -74,3 +74,26 @@ BEGIN
 END reg_empleado_Revisor;
 /
 Prompt Procedimiento_reg_empleado_Revisor
+
+create or replace PROCEDURE reg_revisor_area
+	(
+	v_area_de_interes_id IN	varchar2,
+	v_revisor_id		IN 	varchar2,
+	v_anios_experiencia IN number
+	)
+	AS
+BEGIN
+	insert into area_revisor(anios_experiencia,revisor_id,area_de_interes_id)
+	values (v_anios_experiencia,v_revisor_id,v_area_de_interes_id);
+	
+  DBMS_OUTPUT.PUT_LINE('-- AREA-REVISOR REGISTRADO -- ');
+  DBMS_OUTPUT.PUT_LINE(' | Area-Revisor:        ' || area_revisor_seq.CURRVAL);
+  DBMS_OUTPUT.PUT_LINE(' | Reviso ID:           ' || v_revisor_id);
+  DBMS_OUTPUT.PUT_LINE(' | Area ID:    			' || v_area_de_interes_id);
+  DBMS_OUTPUT.PUT_LINE(' | Experiencia:    		' || v_anios_experiencia);
+END reg_revisor_area;
+/
+Prompt Procedimiento_reg_empleado_Revisor
+
+
+

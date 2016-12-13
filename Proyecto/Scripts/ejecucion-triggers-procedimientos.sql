@@ -1,24 +1,46 @@
 -- Probando Procedure reg_empleado_Revisor y reg_empleado_Editor
 --Revisores
 EXECUTE reg_empleado_Revisor('Eduardo','Carrasco','Garcia','02/02/2014',0256,'eduardo@something.com','20/03/2016');
+EXECUTE reg_revisor_area(10,empleado_seq.CURRVAL,1);
+EXECUTE reg_revisor_area(20,empleado_seq.CURRVAL,3);
+EXECUTE reg_revisor_area(30,empleado_seq.CURRVAL,1);
+EXECUTE reg_revisor_area(40,empleado_seq.CURRVAL,2);
 
 EXECUTE reg_empleado_Revisor('Virgilio','Castro','Rendon','12/11/2016',9825,'virgilio@something.com','20/08/2016');
+EXECUTE reg_revisor_area(10,empleado_seq.CURRVAL,1);
+EXECUTE reg_revisor_area(20,empleado_seq.CURRVAL,4);
+EXECUTE reg_revisor_area(30,empleado_seq.CURRVAL,1);
 
 EXECUTE reg_empleado_Revisor('Miguel Angel','Esquivel','Hernandez','04/05/2014',4359,'miguel@something.com','20/01/2016');
+EXECUTE reg_revisor_area(10,empleado_seq.CURRVAL,13);
+EXECUTE reg_revisor_area(40,empleado_seq.CURRVAL,1);
 
 EXECUTE reg_empleado_Revisor('Eric Ruben','Hernandez','Barrios','04/07/2016',2658,'eric@something.com','21/12/2016');
+EXECUTE reg_revisor_area(10,empleado_seq.CURRVAL,11);
+EXECUTE reg_revisor_area(20,empleado_seq.CURRVAL,9);
+EXECUTE reg_revisor_area(40,empleado_seq.CURRVAL,1);
 
 EXECUTE reg_empleado_Revisor('Carlos','Hernandez','Montes de OCA','04/08/2014',0468,null,'14/07/2016');
+EXECUTE reg_revisor_area(10,empleado_seq.CURRVAL,1);
+EXECUTE reg_revisor_area(30,empleado_seq.CURRVAL,1);
 
 EXECUTE reg_empleado_Revisor('Isaias Abraham','Manzano','Cruz','20/12/2015',8798,null,'08/12/2016');
+EXECUTE reg_revisor_area(10,empleado_seq.CURRVAL,1);
+EXECUTE reg_revisor_area(20,empleado_seq.CURRVAL,1);
 
 EXECUTE reg_empleado_Revisor('Victor','Martinez','Garcia','28/04/2015',2868,'victor@something.com','10/10/2016');
+EXECUTE reg_revisor_area(10,empleado_seq.CURRVAL,1);
+
 
 EXECUTE reg_empleado_Revisor('Rosa Maria','Munios','Alvarez','07/05/2016',6864,'rosa@something.com','20/07/2016');
+EXECUTE reg_revisor_area(20,empleado_seq.CURRVAL,1);
 
 EXECUTE reg_empleado_Revisor('Cesar Octavio','Ocampo','Garcia','09/09/2015',6884,'cesar@something.com','09/04/2016');
+EXECUTE reg_revisor_area(30,empleado_seq.CURRVAL,1);
+
 
 EXECUTE reg_empleado_Revisor('Jonatan','Pedroza','Buendia','07/05/2016',6826,'jonathan@something.com','19/04/2016');
+EXECUTE reg_revisor_area(40,empleado_seq.CURRVAL,1);
 
 --Editores
 EXECUTE reg_empleado_Editor('Mauro Alejandro','Caballero','Sanchez','08/06/2014','Maestria','mauro@super.com',0123456789);

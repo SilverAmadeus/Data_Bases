@@ -5,7 +5,6 @@
 @@./carga_inicial/publicacion.sql
 @@./carga_inicial/suscriptor.sql
 @@./carga_inicial/empleado.sql
-@@./carga_inicial/area_revisor.sql
 
 /*
 -- En caso de que usemos mi Macbook
