@@ -41,19 +41,24 @@ END;
 
 Prompt TRG_PUBLICACION_SUSCRIPTOR
 
--- Lo mismo para la publicacion articulo, el ID del articulo se tiene
--- que relacionar con el ID de la publicacion mas reciente una vez
--- que es aceptado
-
 CREATE OR REPLACE TRIGGER TRG_PUBLICACION_ARTICULO
-BEFORE INSERT ON PUBLICACION_ARTICULO
+BEFORE UPDATE of status_id ON ARTICULO 
 FOR EACH ROW
 BEGIN
-  :NEW.PUBLICACION_ID := PUBLICACION_SEQ.currval;
+  CASE :NEW.status_id
+    WHEN 4 THEN
+      DBMS_OUTPUT.PUT_LINE('ARTICULO CON ID: ' || :new.ARTICULO_id || 
+      ' TIENE STATUS PROGRAMADO, ASIGNE A UNA PUBLICACION');
+    when 5 THEN
+      DBMS_OUTPUT.PUT_LINE('ARTICULO CON ID: ' || :new.ARTICULO_id || 
+      ' TIENE STATUS PUBLICADO');
+    ELSE
+      null;
+	END CASE;
 END;
 /
-
 Prompt TRG_PUBLICACION_ARTICULO
+
 --Este trigger crea un registro nuevo en historico cada que se realiza
 -- un UPDATE en el status de un articulo o INSERT en la tabla articulo
 CREATE OR REPLACE TRIGGER TRG_HISTORICO_STATUS
