@@ -119,4 +119,11 @@ BEGIN
 END;
 /
 Prompt TRG_EDITOR_TO_REVISOR
+/*
+create or replace trigger TRG_PUBLICACION
+AFTER INSERT OF publicacion_id ON PUBLICACION
+FOR EACH ROW
+	CURSOR cur_suscriptor_valido IS
+		SELECT suscriptor_id from suscriptor 
 
+*/
