@@ -180,12 +180,12 @@ Prompt historico
 
 --13) Pdf
 CREATE TABLE pdf(
-    articulo_id   NUMBER        DEFAULT pdf_seq.NEXTVAL,
-    pdf_id        NUMBER(30)    NOT NULL,
-    archivo       BLOB          NOT NULL, 
+    pdf_id   	  NUMBER        DEFAULT pdf_seq.NEXTVAL,
+    articulo_id   NUMBER(30)    NOT NULL,
+    archivo       BLOB          NULL, -- I have no idea how to load this up
     descripcion   VARCHAR2(140) NOT NULL,
     clave         VARCHAR2(2)   NOT NULL,--A1,..A5
-    CONSTRAINT pdf_pk PRIMARY KEY (articulo_id,pdf_id),
+    CONSTRAINT pdf_pk PRIMARY KEY (pdf_id),
     CONSTRAINT pdf_articulo_fk FOREIGN KEY (articulo_id) 
     REFERENCES articulo(articulo_id),
     CONSTRAINT pdf_clave_chk CHECK (clave IN ('A1','A2','A3','A4','A5'))
