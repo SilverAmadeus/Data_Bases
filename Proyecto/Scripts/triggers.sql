@@ -16,15 +16,7 @@ END;
 /
 Prompt TRG_AUTOR_ARTICULO
 
-CREATE OR REPLACE TRIGGER TRG_REVISADO_ARTICULO 
-BEFORE INSERT ON REVISADO_ARTICULO 
-FOR EACH ROW
-BEGIN
-  :NEW.ARTICULO_ID := articulo_seq.currval;
-END;
-/
 
-Prompt TRG_REVISADO_ARTICULO
 -- Para publicacion suscriptor se debe tomar el valor 
 -- del registro de publicacion
 -- mas reciente por lo que se debe de insertar el valor actual 
