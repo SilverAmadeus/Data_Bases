@@ -26,8 +26,8 @@ BEGIN
 		FETCH cur_suscriptor_valido INTO v_suscriptor_id;
 		EXIT WHEN cur_suscriptor_valido%NOTFOUND;
 		DBMS_OUTPUT.PUT_LINE(' '||v_suscriptor_id||' ');
-		INSERT INTO publicacion_suscriptor(publicacion_suscriptor_id,publicacion_id,fecha_envio)
-		VALUES (publicacion_suscriptor_seq.NEXTVAL,v_suscriptor_id,:NEW.publicacion_id,sysdate+10);
+		INSERT INTO publicacion_suscriptor(suscriptor_id, publicacion_id, fecha_envio)
+		VALUES (v_suscriptor_id, :NEW.publicacion_id, sysdate+10);
 	END LOOP; 
 	CLOSE cur_suscriptor_valido;
 END;
