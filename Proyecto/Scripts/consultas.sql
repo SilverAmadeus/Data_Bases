@@ -20,9 +20,6 @@ INTERSECT
 select nombre, apellido_paterno, apellido_materno, fecha_ingreso from empleado
 WHERE fecha_ingreso < TO_DATE('01/01/2016', 'dd/mm/yyyy');
 
---Titutulo, autor de los articulos que estuvieron en la publicacion mas vendida
-select titulo, fecha, num_vendidos from publicacion
-ORDER BY num_vendidos;
 
 /* Obtener el ID, nombre, apellidos y numero de articulos registrados
 del autor con mas articulos registrados
