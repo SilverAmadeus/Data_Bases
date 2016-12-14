@@ -18,20 +18,34 @@ Prompt TRG_AUTOR_ARTICULO
 
 
 
-CREATE OR REPLACE TRIGGER TRG_PUBLICACION_ARTICULO
-BEFORE UPDATE of status_id ON ARTICULO 
+create or replace trigger TRG_PUBLICACION_ARTICULO
+BEFORE UPDATE of status_id ON ARTICULO
 FOR EACH ROW
+DECLARE
+  CURSOR cur_calificacion_articulo IS
+    select calificacion from revisado_articulo
+    WHERE articulo_id = :NEW.articulo_id;
+  
+  v_calificacion NUMBER(30, 0);
 BEGIN
+  OPEN cur_calificacion_articulo;
+  FETCH cur_calificacion_articulo INTO v_calificacion;
   CASE :NEW.status_id
     WHEN 4 THEN
-      DBMS_OUTPUT.PUT_LINE('ARTICULO CON ID: ' || :new.ARTICULO_id || 
-      ' TIENE STATUS PROGRAMADO, ASIGNE A UNA PUBLICACION');
-    when 5 THEN
-      DBMS_OUTPUT.PUT_LINE('ARTICULO CON ID: ' || :new.ARTICULO_id || 
-      ' TIENE STATUS PUBLICADO');
-    ELSE
-      null;
-	END CASE;
+      IF (v_calificacion >= 8) THEN
+        DBMS_OUTPUT.PUT_LINE('ARTICULO CON ID: ' || :new.ARTICULO_id ||
+        ' TIENE STATUS PROGRAMADO, ASIGNE A UNA PUBLICACION');
+      ELSE
+        RAISE_APPLICATION_ERROR(-20020, 'ARTICULO NO TIENE CALIFICACION O ES MENOR A 8');
+      END IF;
+    WHEN 5 THEN
+      IF (v_calificacion >= 8) THEN
+        DBMS_OUTPUT.PUT_LINE('ARTICULO CON ID: ' || :new.ARTICULO_id ||
+        ' TIENE STATUS PUBLICADO');
+      ELSE
+            RAISE_APPLICATION_ERROR(-20020, 'ARTICULO NO TIENE CALIFICACION O ES MENOR A 8');
+      END IF;
+  END CASE;
 END;
 /
 Prompt TRG_PUBLICACION_ARTICULO

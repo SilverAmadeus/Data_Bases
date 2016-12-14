@@ -138,7 +138,32 @@ WHERE empleado_id = 15;
 -- Probando trigger_ TRG_HISTORICO_STATUS
 UPDATE articulo
 SET status_id = 2
+WHERE articulo_id = 1 OR
+articulo_id = 2 OR
+articulo_id = 3 OR
+articulo_id = 4 OR
+articulo_id = 5;
+
+-- Probando trigger TRG_PUBLICACION_ARTICULO
+
+UPDATE revisado_articulo
+SET CALIFICACION = 9
 WHERE articulo_id = 1;
+
+UPDATE revisado_articulo
+SET CALIFICACION = 7
+WHERE articulo_id = 2;
+
+UPDATE articulo
+SET status_id = 4
+WHERE articulo_id =1;
+
+-- Levanta error ya que no puede ser registrado en publicacion por su califcacion menor a 8
+
+UPDATE articulo
+SET status_id = 4
+WHERE articulo_id =2;
+
 
 --Probando procedimiento logonInformation
 EXECUTE logonInformation;
