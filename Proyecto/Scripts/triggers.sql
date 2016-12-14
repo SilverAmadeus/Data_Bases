@@ -45,7 +45,10 @@ BEGIN
       ELSE
             RAISE_APPLICATION_ERROR(-20020, 'ARTICULO NO TIENE CALIFICACION O ES MENOR A 8');
       END IF;
+     ELSE
+     	NULL;
   END CASE;
+  CLOSE cur_calificacion_articulo;
 END;
 /
 Prompt TRG_PUBLICACION_ARTICULO
