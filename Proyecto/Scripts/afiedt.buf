@@ -1,2 +1,6 @@
-select bimestre,fecha, sum(en_inventario) as Inventario,count(*) as publicaciones from user_publicacion group by bimestre,fecha
+CREATE OR REPLACE VIEW v_autor_folio(nombre,apellido_paterno,folio)
+	AS SELECT nombre,apellido_paterno,folio
+	FROM autor au, autor_articulo aa, articulo art
+	where au.autor_id=aa.autor_id
+	and aa.articulo_id=art.articulo_id
 /
