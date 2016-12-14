@@ -23,3 +23,19 @@ WHERE fecha_ingreso < TO_DATE('01/01/2016', 'dd/mm/yyyy');
 --Titutulo, autor de los articulos que estuvieron en la publicacion mas vendida
 select titulo, fecha, num_vendidos from publicacion
 ORDER BY num_vendidos;
+
+/* Obtener el ID, nombre, apellidos y numero de articulos registrados
+del autor con mas articulos registrados
+*/
+select a.autor_id, a.nombre, a.apellido_paterno, a.apellido_materno, 
+count(*) as NUMERO_ARTICULOS from autor a
+JOIN autor_articulo aa ON aa.autor_id = a.autor_id
+JOIN articulo ar ON ar.articulo_id = aa.articulo_id
+HAVING count(*) =( 
+select max(num_articulos) from 
+(
+select autor_id, count(*) as num_articulos from autor_articulo
+GROUP BY autor_id
+ORDER BY count(*)
+) q1)
+GROUP BY a.autor_id, a.nombre, a.apellido_paterno, a.apellido_materno;

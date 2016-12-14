@@ -17,11 +17,6 @@ END;
 Prompt TRG_AUTOR_ARTICULO
 
 
--- Para publicacion suscriptor se debe tomar el valor 
--- del registro de publicacion
--- mas reciente por lo que se debe de insertar el valor actual 
--- de la secuencia de publicacion cuando se crea un nuevo registro
--- en la tabla intermedia
 
 CREATE OR REPLACE TRIGGER TRG_PUBLICACION_ARTICULO
 BEFORE UPDATE of status_id ON ARTICULO 
