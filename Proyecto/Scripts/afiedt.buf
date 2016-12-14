@@ -1,4 +1,2 @@
-BEGIN
-DBMS_OUTPUT.PUT_LINE('Hola mundo a las '|| sysdate);
-END;
+select bimestre,fecha, sum(en_inventario) as Inventario,count(*) as publicaciones from user_publicacion group by bimestre,fecha
 /

@@ -36,3 +36,16 @@ GROUP BY autor_id
 ORDER BY count(*)
 ) q1)
 GROUP BY a.autor_id, a.nombre, a.apellido_paterno, a.apellido_materno;
+
+--connect moro_proy_user/moro
+--Numero de articulos por area de interes
+SELECT area_de_interes_id, count(*) as cuenta  
+FROM user_articulo 
+GROUP BY area_de_interes_id;
+
+--Stock de revistas por bimestre, mostrando el numero de publicaciones por bimestre y la fecha de la publicacion
+SELECT bimestre,fecha, sum(en_inventario) as Inventario,count(*) as publicaciones 
+FROM user_publicacion GROUP BY bimestre,fecha;
+
+
+
