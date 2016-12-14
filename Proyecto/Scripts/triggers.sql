@@ -31,16 +31,6 @@ Prompt TRG_REVISADO_ARTICULO
 -- de la secuencia de publicacion cuando se crea un nuevo registro
 -- en la tabla intermedia
 
-CREATE OR REPLACE TRIGGER TRG_PUBLICACION_SUSCRIPTOR 
-BEFORE INSERT ON PUBLICACION_SUSCRIPTOR 
-FOR EACH ROW
-BEGIN
-  :NEW.PUBLICACION_ID := PUBLICACION_SEQ.currval;
-END;
-/
-
-Prompt TRG_PUBLICACION_SUSCRIPTOR
-
 CREATE OR REPLACE TRIGGER TRG_PUBLICACION_ARTICULO
 BEFORE UPDATE of status_id ON ARTICULO 
 FOR EACH ROW
@@ -154,3 +144,26 @@ BEGIN
 END;
 /
 Prompt TRG_PDF_AMOUNT
+
+create or replace trigger TRG_PUBLICACION
+AFTER INSERT ON publicacion
+FOR EACH ROW
+DECLARE 
+	
+	CURSOR cur_suscriptor_valido IS select suscriptor_id from suscriptor_tmp;
+	v_suscriptor_id 	suscriptor_tmp.suscriptor_id%type;
+
+BEGIN
+	OPEN cur_suscriptor_valido;
+	DBMS_OUTPUT.PUT_LINE('SUSCRIPTORES VALIDOS');
+	DBMS_OUTPUT.PUT_LINE('|| SUSCRIPTOR ID ||');
+	LOOP
+		FETCH cur_suscriptor_valido INTO v_suscriptor_id;
+		EXIT WHEN cur_suscriptor_valido%NOTFOUND;
+		DBMS_OUTPUT.PUT_LINE(' '||v_suscriptor_id||' ');
+		INSERT INTO publicacion_suscriptor(suscriptor_id, publicacion_id, fecha_envio)
+		VALUES (v_suscriptor_id, :NEW.publicacion_id, sysdate+10);
+	END LOOP; 
+	CLOSE cur_suscriptor_valido;
+END;
+/

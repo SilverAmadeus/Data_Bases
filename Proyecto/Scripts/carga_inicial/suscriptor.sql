@@ -1,5 +1,3 @@
---Suscriptor
-
 INSERT INTO suscriptor(nombre,apellido_paterno,apellido_materno,
 fecha_suscripcion,email,meses_vigencia,calle,numero,colonia,codigo_postal,
 delegacion_municipio,estado)

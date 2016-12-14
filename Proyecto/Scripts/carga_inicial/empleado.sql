@@ -13,3 +13,5 @@ VALUES (0,0,'David Antonio','Cruz','Alvarado',TO_DATE('14/12/2015','dd/mm/yyyy')
 
 INSERT INTO empleado(es_revisor,es_editor,nombre,apellido_paterno,apellido_materno,fecha_ingreso)
 VALUES (0,0,'Gerardo','Lopez','Corona',TO_DATE('21/05/2014','dd/mm/yyyy'));
+
+commit;

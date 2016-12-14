@@ -236,3 +236,12 @@ CREATE TABLE revisado_articulo(
     REFERENCES articulo(articulo_id)    
 );
 Prompt revisado_articulo
+--Temporal
+CREATE GLOBAL TEMPORARY TABLE suscriptor_tmp(
+    suscriptor_id     NUMBER(30),
+    nombre            VARCHAR2(40),
+    apellido_paterno  VARCHAR2(40),
+    apellido_materno  VARCHAR2(40),
+    email             VARCHAR2(40)
+);
+
