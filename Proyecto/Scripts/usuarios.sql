@@ -26,4 +26,5 @@ IDENTIFIED BY moro;
 
 GRANT create session to moro_proy_user;
 
+
 Prompt Usuario creado

@@ -14,6 +14,10 @@ GRANT SELECT ON user_publi_art TO moro_proy_user;
 CREATE OR REPLACE PUBLIC SYNONYM user_publicacion FOR publicacion;
 GRANT SELECT ON user_publicacion TO moro_proy_user;
 
+GRANT select on v_revisores to moro_proy_user;
+GRANT select on v_editores to moro_proy_user;
+GRANT SELECT on v_autor_folio to moro_proy_user;
+
 --Sinonimos de Administrador
 
 
